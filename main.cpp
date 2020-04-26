@@ -1,11 +1,13 @@
 #include <iostream>
 
-using namespace std;
+
 
 int main()
 {
     ///salut
-    cout << "Hello world!" << endl;
-    cout << "Julie m'a demande ce message" << endl;
+    std::cout << "Hello world!" << std::endl;
+    std::cout << "Julie m'a demande ce message" << std::endl;
+    std::cout << "super ca marche" << std::endl;
+
     return 0;
 }
