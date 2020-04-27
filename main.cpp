@@ -1,13 +1,15 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <vector>
+#include "graphe.h"
 
 
 
 int main()
 {
-    ///salut c'est julie
-    std::cout << "Hello world!" << std::endl;
-    std::cout << "Julie m'a demande ce message" << std::endl;
+    Graphe dessin("graphe_etoile1_topo.txt");
+    dessin.afficher();
 
     return 0;
 }

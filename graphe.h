@@ -1,24 +1,23 @@
-#ifndef GRAPHE_HPP_INCLUDED
-#define GRAPHE_HPP_INCLUDED
+#ifndef GRAPHE_H_INCLUDED
+#define GRAPHE_H_INCLUDED
 
 #include <fstream>
 #include <iostream>
 #include <string>
 #include "sommet.h"
+#include "arete.h"
 
 class Graphe
 {
     private:
         int m_orientation;
         std::vector <Sommet*> m_sommet;
+        std:: vector  <Arete*> m_arete;
 
     public:
-
         Graphe(std::string nomFichier);
         void afficher();
-        std::string parcoursLargeur(int sommetInitial);
-        std::string parcoursProfondeur(int sommetInitial);
 
 };
 
-#endif // GRAPHE_HPP_INCLUDED
+#endif // GRAPHE_H_INCLUDED

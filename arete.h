@@ -17,7 +17,7 @@ class Arete
         void Adj(int num);
         void affichage();
         int get_num();
-        std::vector<Sommet*> get_adj();
+        std::vector<Arete*> get_adj();
 
 
 };
