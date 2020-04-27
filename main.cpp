@@ -8,8 +8,8 @@
 
 int main()
 {
-    Graphe dessin("graphe_etoile1_topo.txt");
+    std::cout << "test"<< std::endl;
+    Graphe dessin{"graphe_etoile1_topo.txt"};
     dessin.afficher();
-
     return 0;
 }

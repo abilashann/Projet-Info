@@ -4,33 +4,57 @@
 #include <string>
 #include <vector>
 
-Arete::Arete (int num)
+Arete::Arete (std::istream& is)
 {
-    m_num = num;
+    is >> m_id >> m_ID1 >> m_ID2;
+                if ( is.fail() )
+                throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
 }
 
-void Arete::Adj(int nbre)
+/*void Arete::Adj(int nbre)
 {
     m_adj.push_back(new Arete(nbre));
+}*/
+
+
+int Arete::get_id()
+{
+    return m_id;
 }
 
-
-int Arete::get_num()
+int Arete::get_ID1()
 {
-    return m_num;
+    return m_ID1;
+}
+
+int Arete::get_ID2()
+{
+    return m_ID2;
 }
 
 std::vector<Arete*> Arete:: get_adj()
 {
     return m_adj;
 
+
+}
+std::ostream& operator<< (std::ostream& out, const Arete& s)
+{
+    out << "Arete " << s.m_id << " : " << " Sommet 1: "<< s.m_ID1 << " Sommet 2 : " << s.m_ID2;
+    /*for (const auto& adj : s.m_adj)
+    {
+        std::cout << adj->m_num << " ";
+    }*/
+
+    return out;
 }
 
-void Arete::affichage()
+/*void Arete::affichage()
 {
     std::cout << m_num;
-    for (int i=0;i<m_adj.size(); ++i)
+    for (size_t i=0;i<m_adj.size(); ++i)
     {
         std::cout << m_adj[i]->get_num() <<std::endl;
     }
 }
+*/

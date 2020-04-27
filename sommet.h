@@ -9,15 +9,24 @@
 class Sommet
 {
     private:
-        int m_num;
-        std::vector<Sommet*> m_adj;
+        int m_id;
+        char m_nom;
+        int m_x;
+        int m_y;
+        std::vector<int> m_sommet;
 
     public:
-        Sommet (int num);
+        Sommet (std::istream& is);
         void Adj(int num);
         void affichage();
-        int get_num();
+        int get_id();
+        char get_nom();
+        int get_x();
+        int get_y();
         std::vector<Sommet*> get_adj();
+        friend std::ostream& operator<< (std::ostream& out, const Sommet& s);
+        void addAdj (int ID);
+        void afficherAdj();
 
 
 };
