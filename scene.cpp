@@ -1,6 +1,6 @@
 #include "scene.h"
 #include "svgfile.h"
-
+/*
 Scene::Scene()
 {
 
@@ -20,3 +20,4 @@ void Scene::afficherscene() const
         }
 
 }
+*/
