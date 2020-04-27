@@ -32,12 +32,6 @@ int Arete::get_ID2()
     return m_ID2;
 }
 
-std::vector<Arete*> Arete:: get_adj()
-{
-    return m_adj;
-
-
-}
 std::ostream& operator<< (std::ostream& out, const Arete& s)
 {
     out << "Arete " << s.m_id << " : " << " Sommet 1: "<< s.m_ID1 << " Sommet 2 : " << s.m_ID2;

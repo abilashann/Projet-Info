@@ -5,12 +5,12 @@
 #include <string>
 #include <vector>
 #include <iostream>
-
+#include <string>
 class Sommet
 {
     private:
         int m_id;
-        char m_nom;
+        std::string m_nom;
         int m_x;
         int m_y;
         std::vector<int> m_sommet;
@@ -20,7 +20,7 @@ class Sommet
         void Adj(int num);
         void affichage();
         int get_id();
-        char get_nom();
+        std::string get_nom();
         int get_x();
         int get_y();
         std::vector<Sommet*> get_adj();

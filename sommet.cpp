@@ -16,7 +16,7 @@ int Sommet::get_id()
 {
     return m_id;
 }
-char Sommet::get_nom()
+std::string Sommet::get_nom()
 {
     return m_nom;
 }
