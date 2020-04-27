@@ -6,11 +6,6 @@
 
 Graphe::Graphe (std::string nomFichier )
 {
-    int nbre1;
-    int nbre2;
-    int indice;
-    char nom;
-
     int ordre; /// sommet
     int taille; ///arete
 
@@ -26,31 +21,46 @@ Graphe::Graphe (std::string nomFichier )
 
     for(int i=0; i<ordre; i++)
     {
-        m_sommet.push_back(new Sommet(i));
-    }
-
-    for (int i=0; i<ordre; ++i)
-    {
-        fichier >> indice >> nom >> nbre1 >> nbre2;
-        m_sommet[nbre1]->Adj(nbre2);
-        m_sommet[nbre2]->Adj(nbre1);
+        m_sommet.push_back(new Sommet(fichier));
     }
 
     fichier >> taille;
-
-    for (int i=0; i<taille; ++i)
+    for (int z=0; z<taille;++z)
     {
-        m_arete.push_back(new Arete(i));
+        m_arete.push_back(new Arete(fichier));
     }
-
-    for (int i=0; i<taille; ++i)
+    if(m_orientation==1)
     {
-        fichier >> indice >> nbre1 >> nbre2;
-        m_arete[nbre1]->Adj(nbre2);
-        m_arete[nbre2]->Adj(nbre1);
+        for (size_t i=0; i<m_sommet.size();++i)
+{
+    for (size_t y=0;y<m_arete.size(); ++y)
+    {
+        if (m_sommet[i]->get_id()==m_arete[y]->get_ID1())
+        {
+        m_sommet[i]->addAdj(m_arete[y]->get_ID2());
+        }
+    }
+    }
+    }
+else if (m_orientation==0)
+{
+for (size_t i=0; i<m_sommet.size();++i)
+{
+    for (size_t y=0;y<m_arete.size(); ++y)
+    {
+        if (m_sommet[i]->get_id()==m_arete[y]->get_ID1())
+        {
+        m_sommet[i]->addAdj(m_arete[y]->get_ID2());
+        }
+        else if (m_sommet[i]->get_id()==m_arete[y]->get_ID2())
+                    {
+                        m_sommet[i]->addAdj(m_arete[y]->get_ID1());
+                    }
+        }
+
     }
 }
-
+}
 void Graphe::afficher()
 {
     int ordre = m_sommet.size();
@@ -67,19 +77,26 @@ void Graphe::afficher()
 
     std:: cout << "ordre = " << ordre << std::endl;
 
-    for(int i=0; i<ordre; ++i)
-    {
-        m_sommet[i]->affichage();
-    }
-
-    std:: cout << "taille = " << taille << std::endl;
-
-    for(int i=0; i<ordre; ++i)
+    /*for(int i=0; i<ordre; ++i)
     {
         m_arete[i]->affichage();
+    }*/
+for (const auto& s : m_sommet)
+    {
+        std::cout << "  " << *s << std::endl;
     }
+    std:: cout << "taille = " << taille << std::endl;
+    for (const auto& s : m_arete)
+    {
+        std::cout << "  " << *s << std::endl;
+    }
+for (size_t i =0 ; i<m_sommet.size();++i)
+         {
+             std::cout<<"Sommet "<<i<<" Adjacent :";
+            m_sommet[i]->afficherAdj();
+             std::cout<<std::endl;
 
-
+         }
 
 }
 
