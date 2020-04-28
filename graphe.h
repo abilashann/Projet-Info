@@ -19,6 +19,7 @@ class Graphe
     public:
         Graphe(std::string nomFichier);
         void afficher();
+        void centraliteDegre();
 
 };
 

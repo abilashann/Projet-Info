@@ -14,6 +14,7 @@ class Sommet
         int m_x;
         int m_y;
         std::vector<int> m_sommet;
+        int m_degre;
 
     public:
         Sommet (std::istream& is);
@@ -23,6 +24,7 @@ class Sommet
         std::string get_nom();
         int get_x();
         int get_y();
+        int get_degre();
         std::vector<Sommet*> get_adj();
         friend std::ostream& operator<< (std::ostream& out, const Sommet& s);
         void addAdj (int ID);

@@ -16,6 +16,7 @@ Graphe::Graphe (std::string nomFichier )
         throw std::runtime_error("impossible d'ouvrir le fichier");
     }
 
+
     fichier>> m_orientation;
     fichier>> ordre;
 
@@ -97,6 +98,7 @@ void Graphe::afficher()
         std::cout<<std::endl;
 
     }
+
     Svgfile svgout;
     svgout.addGrid();
     for (size_t i=0; i<m_sommet.size(); ++i)
@@ -125,3 +127,20 @@ void Graphe::afficher()
     }
 }
 
+void Graphe::centraliteDegre()
+{
+    int ordre = m_sommet.size();
+    std::vector <int> degre;
+///    int degres=0;
+
+    for (size_t i =0 ; i<m_sommet.size(); ++i)
+    {
+        std::cout<<"Sommet "<<i<<" Adjacent :";
+        m_sommet[i]->afficherAdj();
+        std::cout<<std::endl;
+
+    }
+
+
+
+}

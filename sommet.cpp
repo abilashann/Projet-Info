@@ -28,29 +28,26 @@ int Sommet::get_y()
 {
     return m_y;
 }
-
-/*std::vector<Sommet*> Sommet:: get_adj()
+int Sommet::get_degre()
 {
-    return m_adj;
+    return m_degre;
+}
 
-}*/
 void Sommet::addAdj (int ID)
 {
     m_sommet.push_back(ID);
 }
 void Sommet::afficherAdj()
         {
+            m_degre=0;
             for ( size_t y =0 ; y<m_sommet.size();++y)
              {
                     std::cout <<m_sommet[y]<<" ";
+                    m_degre+=1;
 
              }
         }
-/*
-void Sommet::Adj(int nbre)
-{
-    m_adj.push_back(new Sommet(nbre));
-}*/
+
 
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
 {

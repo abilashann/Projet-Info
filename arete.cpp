@@ -11,12 +11,6 @@ Arete::Arete (std::istream& is)
                 throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
 }
 
-/*void Arete::Adj(int nbre)
-{
-    m_adj.push_back(new Arete(nbre));
-}*/
-
-
 int Arete::get_id()
 {
     return m_id;
@@ -43,12 +37,3 @@ std::ostream& operator<< (std::ostream& out, const Arete& s)
     return out;
 }
 
-/*void Arete::affichage()
-{
-    std::cout << m_num;
-    for (size_t i=0;i<m_adj.size(); ++i)
-    {
-        std::cout << m_adj[i]->get_num() <<std::endl;
-    }
-}
-*/
