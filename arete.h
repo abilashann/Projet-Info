@@ -13,7 +13,7 @@ class Arete
         int m_id2;
         int m_ID1;
         int m_ID2;
-        int m_poids=0;
+        int m_poids=1;
         std::vector<Arete*> m_adj;
 
     public:
@@ -24,6 +24,7 @@ class Arete
         int get_id();
         int get_ID1();
         int get_ID2();
+        int get_Poids();
         std::vector<Arete*> get_adj();
         friend std::ostream& operator<< (std::ostream& out, const Arete& s);
 

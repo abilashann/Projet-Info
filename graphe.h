@@ -18,6 +18,7 @@ class Graphe
 
     public:
         Graphe(std::string nomFichier);
+        void Dijkstra(int i_debut, int i_fin);
         void afficher();
 
 };
