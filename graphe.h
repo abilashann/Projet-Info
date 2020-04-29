@@ -21,6 +21,7 @@ class Graphe
         int Dijkstra(int i_debut, int i_fin);
         void afficher();
         void CritereProximite();
+        void Dijkstra_pour_toutes_les_aretes(int i_debut,int i_fin);
 
 };
 

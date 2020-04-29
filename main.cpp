@@ -14,10 +14,13 @@
 
 int main()
 {
+    //int choix;
     Graphe dessin{"graphe_etoile1_topo.txt"};
     dessin.afficher();
     dessin.CritereProximite();
-    /*dessin.Dijkstra_pour_toutes_les aretes(0,0);*/
+    //std::cin>> choix;
+    //dessin.Dijkstra_pour_toutes_les_aretes(0,1);
+
     return 0;
 }
 /*int main()
