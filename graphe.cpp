@@ -140,8 +140,8 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
     for (auto it : m_sommet)
         it->setMarquage(0);
 
-    int tab_distance[m_sommet.size()]; //recupère les plus court chemin de s0 à chaque sommet parcouru
-    //std::vector <Sommet*> sommetsParcourus; //recupère la liste et l'odre dans lequel les sommets sont parcouru
+    int tab_distance[m_sommet.size()]; //recupï¿½re les plus court chemin de s0 ï¿½ chaque sommet parcouru
+    //std::vector <Sommet*> sommetsParcourus; //recupï¿½re la liste et l'odre dans lequel les sommets sont parcouru
     int tab_predecesseurs[m_sommet.size()];
 
     for (size_t i=0; i<m_sommet.size(); ++i)
@@ -166,32 +166,32 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
         //on determine le plus proche de s0 en partant de s
         for (auto it : m_sommet)
         {
-            if (s->estAdjacentA(it->get_id())) //si on peut aller de s à it
+            if (s->estAdjacentA(it->get_id())) //si on peut aller de s ï¿½ it
             {
                 distance=s->getDist(it->get_id());
 
-                if (tab_distance[it->get_id()]>tab_distance[s->get_id()]+distance)//si c'est plus court d'aller de s0 à it en passant par s
+                if (tab_distance[it->get_id()]>tab_distance[s->get_id()]+distance)//si c'est plus court d'aller de s0 ï¿½ it en passant par s
                 {
-                    //si on trouve un plus court chemin que celui en mémoire
+                    //si on trouve un plus court chemin que celui en mï¿½moire
                     tab_distance[it->get_id()]=tab_distance[s->get_id()]+distance;
                     tab_predecesseurs[it->get_id()]=s->get_id();
                 }
             }
 
         }
-        //recherche du plus près sommet de s0 qui n'a pas encore était étudié
+        //recherche du plus prï¿½s sommet de s0 qui n'a pas encore ï¿½tait ï¿½tudiï¿½
         for (size_t i=0; i<m_sommet.size(); ++i) //on parcours la tab de distance
         {
             if (m_sommet[i]->getMarquage()!=1) //pas parcouru
             {
-                if (tab_distance[i]<d_min) //si c'est le plus près
+                if (tab_distance[i]<d_min) //si c'est le plus prï¿½s
                 {
                     d_min=tab_distance[i];
-                    id_d_min=i; //on garde en mémoire l'identifiant du plus près
+                    id_d_min=i; //on garde en mï¿½moire l'identifiant du plus prï¿½s
                 }
             }
         }
-        s=m_sommet[id_d_min]; //le plus proche sommet pas encore etudier devient le prochain sommet à parcourir
+        s=m_sommet[id_d_min]; //le plus proche sommet pas encore etudier devient le prochain sommet ï¿½ parcourir
         s->setMarquage(1);//1 pour dire qu'on a trouver la plus petite distance
         //sommetsParcourus.push_back(s);
 
@@ -214,10 +214,10 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
         {
             do
             {
-                //on remonte le tableau jusqu'à ce que le predecesseur soit s0
+                //on remonte le tableau jusqu'ï¿½ ce que le predecesseur soit s0
                 pred = temp;
                 std::cout<<" <-- "<<pred; //on aficche chaque predecesseur
-                sommetsParcourus.push_back(m_sommet[pred]); //on ajoute à la liste chaque predecesseur
+                sommetsParcourus.push_back(m_sommet[pred]); //on ajoute ï¿½ la liste chaque predecesseur
                 temp=tab_predecesseurs[pred];
 
             }
@@ -225,7 +225,7 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
 
         }
 
-        else //si pas d'intermédiaire entre s0 et le sommet de fin
+        else //si pas d'intermï¿½diaire entre s0 et le sommet de fin
             std::cout<<" <-- "<<i_debut;
     }
 
@@ -245,12 +245,6 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
     longeur=tab_distance[i_fin];
     return longeur;
 }
-/*void Graphe::Dijkstra_pour_toutes_les_aretes(int i_debut,int i_fin)
-{ for( int i_debut=0; i_debut<m_sommet.size();i_debut++){
- for(int i_fin=0; i_fin<m_sommet.size();i_fin++){
-    Dijkstra(i_debut,int i_fin);}}
-}*/
-
 /*
 void Graphe::Dijkstra_pour_toutes_les_aretes(int i_debut,int i_fin)
 {
@@ -266,11 +260,10 @@ void Graphe::Dijkstra_pour_toutes_les_aretes(int i_debut,int i_fin)
     }
 }
 */
-
 void Graphe::CritereProximite()
 {
-    float Cn[m_sommet.size()]; // Normalisé
-    float Cnn[m_sommet.size()]; // Non normalisé
+    float Cn[m_sommet.size()]; // Normalisï¿½
+    float Cnn[m_sommet.size()]; // Non normalisï¿½
     float Somme=0;;
     int longeur=0;
     for (size_t i=0; i<m_sommet.size(); ++i)

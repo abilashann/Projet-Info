@@ -18,9 +18,7 @@ int main()
     Graphe dessin{"graphe_etoile1_topo.txt"};
     dessin.afficher();
     dessin.CritereProximite();
-    //std::cin>> choix;
-    //dessin.Dijkstra_pour_toutes_les_aretes(0,1);
-
+    /*dessin.Dijkstra_pour_toutes_les_aretes(0,0);*/
     return 0;
 }
 /*int main()
