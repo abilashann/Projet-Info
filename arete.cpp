@@ -38,7 +38,10 @@ int Arete::get_ID2()
 {
     return m_ID2;
 }
-
+int Arete::get_Poids()
+{
+    return m_poids;
+}
 std::ostream& operator<< (std::ostream& out, const Arete& s)
 {
     out << "Arete " << s.m_id << " : " << " Sommet 1: "<< s.m_ID1 << " Sommet 2 : " << s.m_ID2 << " Poids : " << s.m_poids;

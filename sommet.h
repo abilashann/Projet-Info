@@ -6,6 +6,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <map>
+
 class Sommet
 {
     private:
@@ -13,7 +15,8 @@ class Sommet
         std::string m_nom;
         int m_x;
         int m_y;
-        std::vector<int> m_sommet;
+        int m_marquage;
+        std::map<Sommet*,int> m_adjacents;
 
     public:
         Sommet (std::istream& is);
@@ -25,8 +28,12 @@ class Sommet
         int get_y();
         std::vector<Sommet*> get_adj();
         friend std::ostream& operator<< (std::ostream& out, const Sommet& s);
-        void addAdj (int ID);
+        void remplir(Sommet* adjacent,int poids);
         void afficherAdj();
+        void setMarquage(int nv);
+        bool estAdjacentA(int i);
+        int getMarquage()const;
+        int getDist(int i);
 
 
 };

@@ -28,29 +28,45 @@ int Sommet::get_y()
 {
     return m_y;
 }
-
-/*std::vector<Sommet*> Sommet:: get_adj()
+int Sommet::getMarquage()const
 {
-    return m_adj;
-
-}*/
-void Sommet::addAdj (int ID)
-{
-    m_sommet.push_back(ID);
+    return m_marquage;
 }
-void Sommet::afficherAdj()
-        {
-            for ( size_t y =0 ; y<m_sommet.size();++y)
-             {
-                    std::cout <<m_sommet[y]<<" ";
-
-             }
-        }
-/*
-void Sommet::Adj(int nbre)
+void Sommet::setMarquage(int nv)
 {
-    m_adj.push_back(new Sommet(nbre));
-}*/
+    m_marquage=nv;
+}
+void Sommet::remplir(Sommet* adjacent,int poids)
+{
+     m_adjacents.emplace(adjacent,poids);
+}
+int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
+{
+    int d=99;
+    for (auto it : m_adjacents)
+        if (it.first->get_id()==i)
+            d=it.second;
+    return d; //s'il ne sont pas adjacent retourne 99
+}
+
+void Sommet::afficherAdj()
+{
+    std::cout<<"Sommet "
+                        <<m_id<<" : ";
+    for (auto it : m_adjacents)
+    {
+        std::cout<<it.first->get_id()<<""  //identifiant
+                 <<"("<<it.second<<") "; //poids de l'arc
+    }
+}
+bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numéro i
+{
+    bool adjacent=false;
+    for (auto it : m_adjacents)
+        if (it.first->get_id()==i)
+            adjacent=true;
+    return adjacent;
+}
 
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
 {

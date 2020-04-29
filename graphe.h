@@ -18,7 +18,9 @@ class Graphe
 
     public:
         Graphe(std::string nomFichier);
+        int Dijkstra(int i_debut, int i_fin);
         void afficher();
+        void CritereProximite();
 
 };
 
