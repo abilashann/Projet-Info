@@ -19,7 +19,14 @@ class Graphe
     public:
         Graphe(std::string nomFichier);
         void afficher();
+<<<<<<< Updated upstream
         void centraliteDegre();
+=======
+        void CritereProximite();
+        void centraliteVecteurPropre();
+        void centraliteDegre();
+
+>>>>>>> Stashed changes
 
 };
 

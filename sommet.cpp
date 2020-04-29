@@ -28,9 +28,53 @@ int Sommet::get_y()
 {
     return m_y;
 }
+<<<<<<< Updated upstream
 int Sommet::get_degre()
 {
     return m_degre;
+=======
+
+int Sommet::getMarquage()const
+{
+    return m_marquage;
+}
+void Sommet::setMarquage(int nv)
+{
+    m_marquage=nv;
+}
+
+int Sommet::get_Cvp()
+{
+    return m_Cvp;
+}
+
+int Sommet::get_Cd()
+{
+    return m_Cd;
+}
+
+int Sommet::set_Cvp(int nouvVal)
+{
+    return m_Cvp= nouvVal;
+}
+
+int Sommet::set_Cd(int cd)
+{
+    return m_Cd= cd;
+}
+
+void Sommet::remplir(Sommet* adjacent,int poids)
+{
+     m_adjacents.emplace(adjacent,poids);
+}
+int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
+{
+    int d=99;
+    for (auto it : m_adjacents)
+        if (it.first->get_id()==i)
+            d=it.second;
+    return d; //s'il ne sont pas adjacent retourne 99
+>>>>>>> Stashed changes
 }
 
 void Sommet::addAdj (int ID)
