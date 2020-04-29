@@ -12,7 +12,7 @@ class Arete
         int m_id;
         int m_ID1;
         int m_ID2;
-        std::vector<Arete*> m_adj;
+        //std::vector<Arete*> m_adj;
 
     public:
         Arete (std::istream& is);

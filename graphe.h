@@ -20,6 +20,7 @@ class Graphe
         Graphe(std::string nomFichier);
         void afficher();
         void centraliteDegre();
+        void centraliteVecteurPropre();
 
 };
 

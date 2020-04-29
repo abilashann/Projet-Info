@@ -7,9 +7,9 @@
 Sommet::Sommet (std::istream& is)
 {
     is >> m_id >> m_nom >> m_x >> m_y ;
-            //std::cout<< m_id<<std::endl;
-            if ( is.fail() )
-                throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
+    //std::cout<< m_id<<std::endl;
+    if ( is.fail() )
+        throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
 }
 
 int Sommet::get_id()
@@ -28,25 +28,43 @@ int Sommet::get_y()
 {
     return m_y;
 }
-int Sommet::get_degre()
+
+float Sommet::get_Cd()
 {
-    return m_degre;
+    return m_Cd;
 }
 
-void Sommet::addAdj (int ID)
+std::vector<Sommet*> Sommet::get_adj()
 {
-    m_sommet.push_back(ID);
+    return m_adj;
+
 }
+
+void Sommet::addAdj (Sommet* new_adj)
+{
+    m_adj.push_back(new_adj);
+}
+
 void Sommet::afficherAdj()
-        {
-            m_degre=0;
-            for ( size_t y =0 ; y<m_sommet.size();++y)
-             {
-                    std::cout <<m_sommet[y]<<" ";
-                    m_degre+=1;
+{
+    for ( size_t y =0 ; y<get_degre(); ++y)
+    {
+        std::cout <<m_adj[y]->get_id() <<" ";
+        std::cout <<get_degre()<< std::endl;
 
-             }
-        }
+    }
+}
+
+void Sommet:: set_Cd(float Cd)
+{
+    m_Cd=Cd;
+}
+
+///void Sommet:: set_Cdn(float Cdn)
+///{
+   /// m_Cdn=Cdn;
+///}
+
 
 
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
@@ -55,6 +73,7 @@ std::ostream& operator<< (std::ostream& out, const Sommet& s)
 
     return out;
 }
+
 
 
 

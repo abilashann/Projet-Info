@@ -9,13 +9,12 @@ Graphe::Graphe (std::string nomFichier )
 {
     int ordre; /// sommet
     int taille; ///arete
-
+    int taille2;
     std::ifstream fichier(nomFichier);
     if (!fichier)
     {
         throw std::runtime_error("impossible d'ouvrir le fichier");
     }
-
 
     fichier>> m_orientation;
     fichier>> ordre;
@@ -27,10 +26,34 @@ Graphe::Graphe (std::string nomFichier )
     }
 
     fichier >> taille;
+    std::string nomdufichier2="0";
+    int choix;
+    std::cout << "Voulez ouvrir un fichier pondere? 1 pour oui 2 pour non" << std::endl;
+    while(choix!=1 && choix!=2)
+    std::cin >> choix;
+    if (choix==1)
+    {
+        std::cout << "Nom du fichier :" << std::endl;
+        std::cin >> nomdufichier2;
+    std::ifstream fichier2(nomdufichier2);
+    if (!fichier2)
+    {
+        throw std::runtime_error("impossible d'ouvrir le fichier");
+    }
+    fichier2 >> taille2;
+    for (int z=0; z<taille; ++z)
+    {
+        m_arete.push_back(new Arete(fichier,fichier2));
+    }
+    }
+    else
+    {
     for (int z=0; z<taille; ++z)
     {
         m_arete.push_back(new Arete(fichier));
     }
+    }
+    std::cout << "test114 : " << m_arete[0]->get_ID1() << std::endl;
     if(m_orientation==1)
     {
         for (size_t i=0; i<m_sommet.size(); ++i)
@@ -127,19 +150,65 @@ void Graphe::afficher()
     }
 }
 
+
 void Graphe::centraliteDegre()
 {
-    int ordre = m_sommet.size();
+    int maxi=0;
+    float Cg=0;
     std::vector <int> degre;
-///    int degres=0;
 
     for (size_t i =0 ; i<m_sommet.size(); ++i)
     {
-        std::cout<<"Sommet "<<i<<" Adjacent :";
-        m_sommet[i]->afficherAdj();
-        std::cout<<std::endl;
+        Cd = sommet[i]->get_adj().size();
+        std::cout<< Cd << std::endl;
 
     }
+}
+
+
+
+void Graphe::centraliteVecteurPropre()
+{
+    ///initialisation variable
+    double lambda = 0.0;
+    double lambda_prev = 0.0;
+    sdt::vector<float> somme_indice_Si;
+
+    ///initialisation
+
+    for(size_t i = 0< i<m_sommets.size() ; i++)
+    {
+        m_sommets[i]->set_cvp(1);
+    }
+
+    /// calcul
+
+    do
+    {
+        ///parcours des sommets
+        for(size_t i = 0; i<m_sommets.size(); i++)
+        {
+            float somme_adj = 0.0;
+
+            ///parcours des adj de m_sommet[i]
+            for (j=0 ; j<m_sommets[i]->get_degre() ; j++)
+                {
+                    somme_adj += m_sommets[i]->get_adj()[j]->get_cvp();
+                }
+            somme_indice_Si.push_back(somme_adj);
+        }
+
+        ///calcul de lambda
+        lambda_prev = lambda;
+        lambda = sqrt(somme_indice);
+
+        /// calcul nouvel indice
+        for(int i=0 ; i<m_sommets.size(); i++)
+        {
+            m_sommets[i]->set_cvp(somme_indice_Si[i]/lambda);
+        }
+
+    }while(abs(lambda - lambda_prev) < 0.01);
 
 
 
