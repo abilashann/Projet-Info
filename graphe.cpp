@@ -30,46 +30,45 @@ Graphe::Graphe (std::string nomFichier )
     int choix;
     std::cout << "Voulez ouvrir un fichier pondere? 1 pour oui 2 pour non" << std::endl;
     while(choix!=1 && choix!=2)
-    std::cin >> choix;
+        std::cin >> choix;
     if (choix==1)
     {
         std::cout << "Nom du fichier :" << std::endl;
         std::cin >> nomdufichier2;
-    std::ifstream fichier2(nomdufichier2);
-    if (!fichier2)
-    {
-        throw std::runtime_error("impossible d'ouvrir le fichier");
-    }
-    fichier2 >> taille2;
-    for (int z=0; z<taille; ++z)
-    {
-        m_arete.push_back(new Arete(fichier,fichier2));
-    }
+        std::ifstream fichier2(nomdufichier2);
+        if (!fichier2)
+        {
+            throw std::runtime_error("impossible d'ouvrir le fichier");
+        }
+        fichier2 >> taille2;
+        for (int z=0; z<taille; ++z)
+        {
+            m_arete.push_back(new Arete(fichier,fichier2));
+        }
     }
     else
     {
-    for (int z=0; z<taille; ++z)
-    {
-        m_arete.push_back(new Arete(fichier));
+        for (int z=0; z<taille; ++z)
+        {
+            m_arete.push_back(new Arete(fichier));
+        }
     }
-    }
-    std::cout << "test114 : " << m_arete[0]->get_ID1() << std::endl;
     if(m_orientation==1)
     {
 
-            for (size_t y=0; y<m_arete.size(); ++y)
-            {
-                m_sommet[m_arete[y]->get_ID1()]->remplir(m_sommet[m_arete[y]->get_ID2()],m_arete[y]->get_Poids());
-            }
+        for (size_t y=0; y<m_arete.size(); ++y)
+        {
+            m_sommet[m_arete[y]->get_ID1()]->remplir(m_sommet[m_arete[y]->get_ID2()],m_arete[y]->get_Poids());
+        }
     }
     else if (m_orientation==0)
     {
 
-            for (size_t y=0; y<m_arete.size(); ++y)
-            {
-                m_sommet[m_arete[y]->get_ID1()]->remplir(m_sommet[m_arete[y]->get_ID2()],m_arete[y]->get_Poids());
-                m_sommet[m_arete[y]->get_ID2()]->remplir(m_sommet[m_arete[y]->get_ID1()],m_arete[y]->get_Poids());
-            }
+        for (size_t y=0; y<m_arete.size(); ++y)
+        {
+            m_sommet[m_arete[y]->get_ID1()]->remplir(m_sommet[m_arete[y]->get_ID2()],m_arete[y]->get_Poids());
+            m_sommet[m_arete[y]->get_ID2()]->remplir(m_sommet[m_arete[y]->get_ID1()],m_arete[y]->get_Poids());
+        }
     }
 }
 void Graphe::afficher()
@@ -134,8 +133,9 @@ void Graphe::afficher()
         }
     }
 }
-void Graphe::Dijkstra(int i_debut, int i_fin)
+int Graphe::Dijkstra(int i_debut, int i_fin)
 {
+    int longeur=0;
     ///initialisation
     for (auto it : m_sommet)
         it->setMarquage(0);
@@ -213,7 +213,8 @@ void Graphe::Dijkstra(int i_debut, int i_fin)
         if (i_debut!=temp)
         {
             do
-            {//on remonte le tableau jusqu'à ce que le predecesseur soit s0
+            {
+                //on remonte le tableau jusqu'à ce que le predecesseur soit s0
                 pred = temp;
                 std::cout<<" <-- "<<pred; //on aficche chaque predecesseur
                 sommetsParcourus.push_back(m_sommet[pred]); //on ajoute à la liste chaque predecesseur
@@ -241,6 +242,42 @@ void Graphe::Dijkstra(int i_debut, int i_fin)
         std::cout<<sommetsParcourus[1]->getDist(sommetsParcourus[0]->get_id())<<"=";
     }
     std::cout<<tab_distance[i_fin];
+    longeur=tab_distance[i_fin];
+    return longeur;
+}
+void Graphe::CritereProximite()
+{
+    float Cn[m_sommet.size()]; // Normalisé
+    float Cnn[m_sommet.size()]; // Non normalisé
+    float Somme=0;;
+    int longeur=0;
+    for (size_t i=0; i<m_sommet.size(); ++i)
+    {
+        for (size_t y=0; y<m_sommet.size(); ++y)
+        {
+            if (i==y)
+            {
+                longeur=0;
+            }
+            else
+            {
+                longeur=Dijkstra(i,y);
+            }
 
+            Somme+=longeur;
+            longeur=0;
+        }
+        std::cout << std::endl;
+        std::cout << "Somme = :" << Somme<< std::endl;
+        if(Somme!=0)
+        {
+            Cn[i]=((m_sommet.size()-1)/(Somme));
+            Cnn[i]=((1)/(Somme));
+            std::cout<< "Cn numero :"<< i << " = " << Cn[i] << std::endl;
+        std::cout<< "Cnn numero :"<< i << " = " << Cnn[i] << std::endl;
+        }
+Somme=0;
+
+    }
 }
 

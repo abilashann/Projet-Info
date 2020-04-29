@@ -16,7 +16,7 @@ int main()
 {
     Graphe dessin{"graphe_etoile1_topo.txt"};
     dessin.afficher();
-    dessin.Dijkstra(0,4);
+    dessin.CritereProximite();
     return 0;
 }
 /*int main()
