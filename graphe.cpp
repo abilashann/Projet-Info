@@ -245,6 +245,12 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
     longeur=tab_distance[i_fin];
     return longeur;
 }
+/*
+void Graphe::Dijkstra_pour_toutes_les aretes(int i_debut,int i_fin)
+{ for( int i_debut=0; i_debut<m_sommet.size();i_debut++){
+ for(int i_fin=0; i_fin<m_sommet.size();i_fin++){
+    Dijkstra(i_debut,int i_fin);}}
+}*/
 void Graphe::CritereProximite()
 {
     float Cn[m_sommet.size()]; // Normalisé
