@@ -27,6 +27,7 @@ class Sommet
         double m_Cpn;
 
         int m_marquage;
+        int m_couleur;
 
         ///adjacence
         std::map<Sommet*,int> m_adjacents;
@@ -43,6 +44,10 @@ class Sommet
 
         void Adj(int num);
         void affichage();
+        void suppadj(Sommet* j);
+        void reinitialiserCouleur();
+        void setCouleur(int nv);
+        int getCouleur()const;
 
         std::map<Sommet*,int> get_adj() {return m_adjacents;}
 

@@ -75,6 +75,11 @@ void Sommet::remplir(Sommet* adjacent,int poids)
 {
      m_adjacents.emplace(adjacent,poids);
 }
+void Sommet::suppadj(Sommet* j)
+{
+    auto it= m_adjacents.find(j);
+    m_adjacents.erase(j);
+}
 int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
 {
     int d=99;
@@ -101,7 +106,19 @@ void Sommet::afficherAdj()
                  <<"("<<it.second<<") "; //poids de l'arc
     }
 }
+void Sommet::reinitialiserCouleur()
+{
+    m_couleur=0;
+}
 
+void Sommet::setCouleur(int nv)
+{
+    m_couleur=nv;
+}
+int Sommet::getCouleur()const
+{
+    return m_couleur;
+}
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
 {
     out << "Sommet " << s.m_id << " : " << " Nom : "<< s.m_nom << " x : " << s.m_x << " y : " << s.m_y;

@@ -20,11 +20,14 @@ class Graphe
         Graphe(std::string nomFichier);
         int Dijkstra(int i_debut, int i_fin);
         void afficher();
+        void CreationAdj();
         void CritereProximite();
         void centraliteVecteurPropre();
         void centraliteDegre();
         void sauvegarde();
-
+        void Suppressionarete();
+        void Connexite();
+        void recuDFS(std::map<int, int>& i_preds,Sommet* s);
 
 };
 

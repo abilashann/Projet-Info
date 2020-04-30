@@ -53,6 +53,10 @@ Graphe::Graphe (std::string nomFichier )
             m_arete.push_back(new Arete(fichier));
         }
     }
+   CreationAdj();
+}
+void Graphe::CreationAdj()
+{
     if(m_orientation==1)
     {
 
@@ -401,6 +405,102 @@ void Graphe::sauvegarde()
     }
 
 }
+void Graphe::Suppressionarete()
+{
+    int choix;
+    int indice;
+    std::cout << "Nombre d'arrete a supprimer? " <<std::endl;
+    std::cin >> choix;
+    for(int i=0;i<choix;++i)
+    {
+        std::cout << "Indice de l'arrete? " <<std::endl;
+        std::cin >> indice;
+        for(size_t j=0;j<m_arete.size();++j)
+        {
+            if(indice==m_arete[j]->get_id())
+                {
+                    m_sommet[m_arete[j]->get_ID1()]->suppadj(m_sommet[m_arete[j]->get_ID2()]);
+                    m_sommet[m_arete[j]->get_ID2()]->suppadj(m_sommet[m_arete[j]->get_ID1()]);
+                    m_arete.erase(m_arete.begin()+j);
+                }
 
 
+        }
+    }
+}
+void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
+{
+    //algorithme recurence de Mme Palasi
+    s->setCouleur(1);//gris
+    for (auto it : m_sommet)
+    {
+        if (it->estAdjacentA(s->get_id()))
+        {
+            if (it->getCouleur()==0) //si ne fait pas déjà partie de la pile
+            {
+                i_preds[it->get_id()]=s->get_id();
+                recuDFS(i_preds,it); //par recurence
+
+            }
+        }
+
+    }
+    s->setCouleur(2); //met en noir
+
+}
+void Graphe::Connexite()
+{
+    int nbCompo=0;
+    bool stop = false;
+    std::map<int, int> i_preds; //liste des prdecesseurs pour le DFS
+    std::map<int,std::vector<int>> compoConnexes; //numéro et identidfiant des sommets de chaque composante
+
+    ///mets les sommets en blancs
+    for (auto it : m_sommet)
+        it->reinitialiserCouleur();
+
+    ///recherche de composante de sommets
+    do
+    {
+        stop=false;
+        for (auto it : m_sommet)
+        {
+
+            if (it->getCouleur()!=2 && !stop)
+            {
+                //si on découvre un nouveau sommet qui n'a pas encore été rangé dan sune composante connexe
+                ++nbCompo; //nouvelle composante
+                compoConnexes[nbCompo].push_back(it->get_id()); //on ajoute le premier dans une nouvel composante que l'on crée
+                recuDFS(i_preds,it); //recherche de tous les sommets de la composante avec un DFS
+                if (!i_preds.empty())
+                    for (auto et : i_preds)
+                        compoConnexes[nbCompo].push_back(et.first); //on ajoute tous les sommets trouvé à la composante
+
+
+                stop=true; //on s'occupe d'une composante à la fois
+            }
+
+        }
+        i_preds.clear(); //on recommence en vidant la liste de sommets
+
+    }
+    while (stop); //tant qu'il a des sommets qui n'ont pas été parcouru
+
+    ///affichage
+    for (auto it : compoConnexes)
+    {
+        std::cout<<std::endl<<"Composante connexe "<<it.first<<" : ";
+        for (auto et : it.second)
+            std::cout<<et<<" ";
+    }
+std::cout<<"Composante taille : "<< compoConnexes.size()<<std::endl;
+if (compoConnexes.size()>1)
+{
+    std::cout<<"Le graph n'est pas connexe "<< std::endl;
+}
+else
+{
+    std::cout<<"Le graph est connexe "<< std::endl;
+}
+}
 

@@ -20,6 +20,12 @@ int main()
     dessin.centraliteVecteurPropre();
     dessin.centraliteDegre();
     dessin.sauvegarde();
+    dessin.Connexite();
+    dessin.Suppressionarete();
+    dessin.CreationAdj();
+    dessin.afficher();
+    dessin.Connexite();
+
     return 0;
 }
 /*int main()
