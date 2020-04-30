@@ -28,11 +28,6 @@ int Sommet::get_y()
 {
     return m_y;
 }
-<<<<<<< Updated upstream
-int Sommet::get_degre()
-{
-    return m_degre;
-=======
 
 int Sommet::getMarquage()const
 {
@@ -43,7 +38,7 @@ void Sommet::setMarquage(int nv)
     m_marquage=nv;
 }
 
-int Sommet::get_Cvp()
+float Sommet::get_Cvp()
 {
     return m_Cvp;
 }
@@ -53,10 +48,6 @@ int Sommet::get_Cd()
     return m_Cd;
 }
 
-int Sommet::set_Cvp(int nouvVal)
-{
-    return m_Cvp= nouvVal;
-}
 
 int Sommet::set_Cd(int cd)
 {
@@ -74,24 +65,19 @@ int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un au
         if (it.first->get_id()==i)
             d=it.second;
     return d; //s'il ne sont pas adjacent retourne 99
->>>>>>> Stashed changes
 }
 
-void Sommet::addAdj (int ID)
-{
-    m_sommet.push_back(ID);
-}
+
 void Sommet::afficherAdj()
-        {
-            m_degre=0;
-            for ( size_t y =0 ; y<m_sommet.size();++y)
-             {
-                    std::cout <<m_sommet[y]<<" ";
-                    m_degre+=1;
-
-             }
-        }
-
+{
+    std::cout<<"Sommet "
+                        <<m_id<<" : ";
+    for (auto it : m_adjacents)
+    {
+        std::cout<<it.first->get_id()<<""  //identifiant
+                 <<"("<<it.second<<") "; //poids de l'arc
+    }
+}
 
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
 {

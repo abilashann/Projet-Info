@@ -6,12 +6,9 @@
 #include <vector>
 #include <iostream>
 #include <string>
-<<<<<<< Updated upstream
-=======
 #include <map>
 #include <cmath>
 
->>>>>>> Stashed changes
 class Sommet
 {
     private:
@@ -20,20 +17,17 @@ class Sommet
         std::string m_nom;
         int m_x;
         int m_y;
-<<<<<<< Updated upstream
-        std::vector<int> m_sommet;
-        int m_degre;
-=======
 
         ///indice
         float m_Cvp;
         float m_Cd;
+        float m_Cdn;
+        float m_C;
 
         int m_marquage;
 
         ///adjacence
         std::map<Sommet*,int> m_adjacents;
->>>>>>> Stashed changes
 
     public:
         /// constructeur
@@ -44,36 +38,32 @@ class Sommet
         std::string get_nom();
         int get_x();
         int get_y();
-<<<<<<< Updated upstream
-        int get_degre();
-        std::vector<Sommet*> get_adj();
-=======
 
         void Adj(int num);
         void affichage();
 
         std::map<Sommet*,int> get_adj() {return m_adjacents;}
 
-        int get_Cvp();
+        float get_Cvp();
+        float get_Cdn() {return m_Cdn;}
         int get_Cd();
         int get_degre() {return m_adjacents.size();}
+        float get_C() {return m_C;}
 
         ///setter
         void setMarquage(int nv);
-        int set_Cvp(int nouvVal);
+        void set_Cvp(float NV) {m_Cvp = NV; }
         int set_Cd(int cd);
+        void set_C(float C) {m_C= C;}
+        void set_Cdn(int cdn) {m_Cdn = cdn;}
 
->>>>>>> Stashed changes
         friend std::ostream& operator<< (std::ostream& out, const Sommet& s);
-        void addAdj (int ID);
+        void remplir(Sommet* adjacent,int poids);
         void afficherAdj();
-<<<<<<< Updated upstream
-=======
 
         bool estAdjacentA(int i);
         int getMarquage()const;
         int getDist(int i);
->>>>>>> Stashed changes
 
 
 };
