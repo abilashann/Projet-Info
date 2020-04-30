@@ -17,8 +17,7 @@ int main()
     Graphe dessin{"graphe_etoile1_topo.txt"};
     dessin.afficher();
     //dessin.CritereProximite();
-    /*dessin.Dijkstra_pour_toutes_les aretes(0,0);*/
-    dessin.centraliteVecteurPropre();
+    //dessin.centraliteVecteurPropre();
     //dessin.centraliteDegre();
     return 0;
 }
