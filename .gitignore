@@ -37,3 +37,4 @@
 *.depend
 /bin
 /obj
+output.svg
