@@ -1,5 +1,5 @@
 #include "graphe.h"
-#include "svg/svgfile.h"
+#include "svgfile.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -136,7 +136,7 @@ void Graphe::afficher()
     }
 }
 
-/*
+
 int Graphe::Dijkstra(int i_debut, int i_fin)
 {
     int longeur=0;
@@ -249,7 +249,7 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
     longeur=tab_distance[i_fin];
     return longeur;
 }
-
+/*
 void Graphe::Dijkstra_pour_toutes_les aretes(int i_debut,int i_fin)
 { for( int i_debut=0; i_debut<m_sommet.size();i_debut++){
  for(int i_fin=0; i_fin<m_sommet.size();i_fin++){
@@ -266,12 +266,12 @@ void Graphe::centraliteDegre()
 
     for (size_t i =0 ; i<m_sommet.size(); ++i)
     {
-        m_sommet[i]->set_Cd(Cd);
         Cd = m_sommet[i]->get_degre();
-        std::cout<< "Cd " << i << " : " << std::endl;
+        m_sommet[i]->set_Cd(Cd);
+        std::cout<< "Cd " << i << " : " << m_sommet[i]->get_Cd() << std::endl;
+        Cdn=Cd/(ordre - 1);
         m_sommet[i]->set_Cdn(Cdn);
-        Cdn=Cd/ordre - 1;
-        std::cout<<"Cdn " << i << " : " << Cdn << std::endl;
+        std::cout<<"Cdn " << i << " : " << m_sommet[i]->get_Cdn() << std::endl;
         std::cout << std::endl;
     }
 }
@@ -342,17 +342,14 @@ void Graphe::centraliteVecteurPropre()
             std::cout << "calcule nouvel indice : " << m_sommet[i]->get_Cvp() << std::endl;
         }
     }
-    while(abs(lambda - lambda_prev) > 0.6);
-
-
-
+    while(abs(lambda - lambda_prev) > 0.01);
 }
 
-/*
+
 void Graphe::CritereProximite()
 {
-    float Cn[m_sommet.size()]; // Normalisé
-    float Cnn[m_sommet.size()]; // Non normalisé
+    double Cp; // Normalisé
+    double Cpn; // Non normalisé
     float Somme=0;;
     int longeur=0;
     for (size_t i=0; i<m_sommet.size(); ++i)
@@ -375,14 +372,35 @@ void Graphe::CritereProximite()
         std::cout << "Somme = :" << Somme<< std::endl;
         if(Somme!=0)
         {
-            Cn[i]=((m_sommet.size()-1)/(Somme));
-            Cnn[i]=((1)/(Somme));
-            std::cout<< "Cn numero :"<< i << " = " << Cn[i] << std::endl;
-        std::cout<< "Cnn numero :"<< i << " = " << Cnn[i] << std::endl;
+            Cp=((m_sommet.size()-1)/(Somme));
+            Cpn=((1)/(Somme));
+            m_sommet[i]->set_Cp(Cp);
+            m_sommet[i]->set_Cpn(Cpn);
+            std::cout<< "Cn numero :"<< i << " = " << m_sommet[i]->get_Cp() << std::endl;
+            std::cout<< "Cnn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
         }
-Somme=0;
+        Somme=0;
 
     }
 }
-*/
+void Graphe::sauvegarde()
+{
+    std::ofstream fichier("IndiceSave.txt");
+    if (fichier)
+    {
+        for (size_t i=0; i<m_sommet.size(); ++i)
+        {
+            fichier << i << " " << m_sommet[i]->get_Cd() << " " << m_sommet[i]->get_Cdn() << " "
+            << m_sommet[i]->get_Cvp() << " "
+            << m_sommet[i]->get_Cp() << " " << m_sommet[i]->get_Cpn() <<std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Impossible d'ecrire/ouvrir sur le fichier" <<std::endl;
+    }
+
+}
+
+
 

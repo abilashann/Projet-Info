@@ -23,6 +23,7 @@ class Graphe
         void CritereProximite();
         void centraliteVecteurPropre();
         void centraliteDegre();
+        void sauvegarde();
 
 
 };

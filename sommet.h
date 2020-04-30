@@ -23,6 +23,8 @@ class Sommet
         float m_Cd;
         float m_Cdn;
         float m_C;
+        double m_Cp;
+        double m_Cpn;
 
         int m_marquage;
 
@@ -47,15 +49,19 @@ class Sommet
         float get_Cvp();
         float get_Cdn() {return m_Cdn;}
         int get_Cd();
+        double get_Cp();
+        double get_Cpn();
         int get_degre() {return m_adjacents.size();}
         float get_C() {return m_C;}
 
         ///setter
         void setMarquage(int nv);
         void set_Cvp(float NV) {m_Cvp = NV; }
+        void set_Cp(double NV);
+        void set_Cpn(double NV);
         int set_Cd(int cd);
         void set_C(float C) {m_C= C;}
-        void set_Cdn(int cdn) {m_Cdn = cdn;}
+        void set_Cdn(float cdn) {m_Cdn = cdn;}
 
         friend std::ostream& operator<< (std::ostream& out, const Sommet& s);
         void remplir(Sommet* adjacent,int poids);

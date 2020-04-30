@@ -16,10 +16,10 @@ int main()
 {
     Graphe dessin{"graphe_etoile1_topo.txt"};
     dessin.afficher();
-    //dessin.CritereProximite();
-    /*dessin.Dijkstra_pour_toutes_les aretes(0,0);*/
+    dessin.CritereProximite();
     dessin.centraliteVecteurPropre();
-    //dessin.centraliteDegre();
+    dessin.centraliteDegre();
+    dessin.sauvegarde();
     return 0;
 }
 /*int main()
