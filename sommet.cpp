@@ -32,15 +32,54 @@ int Sommet::getMarquage()const
 {
     return m_marquage;
 }
+
 void Sommet::setMarquage(int nv)
 {
     m_marquage=nv;
 }
+void Sommet::set_Cp(double nv)
+{
+    m_Cp=nv;
+}
+void Sommet::set_Cpn(double nv)
+{
+    m_Cpn=nv;
+}
+
+float Sommet::get_Cvp()
+{
+    return m_Cvp;
+}
+
+int Sommet::get_Cd()
+{
+    return m_Cd;
+}
+
+double Sommet::get_Cp()
+{
+    return m_Cp;
+}
+double Sommet::get_Cpn()
+{
+    return m_Cpn;
+}
+
+int Sommet::set_Cd(int cd)
+{
+    return m_Cd= cd;
+}
+
 void Sommet::remplir(Sommet* adjacent,int poids)
 {
      m_adjacents.emplace(adjacent,poids);
 }
-int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
+void Sommet::suppadj(Sommet* j)
+{
+    auto it= m_adjacents.find(j);
+    m_adjacents.erase(j);
+}
+int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet ï¿½ un autre sommet de numï¿½ro i
 {
     int d=99;
     for (auto it : m_adjacents)
@@ -48,7 +87,14 @@ int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un au
             d=it.second;
     return d; //s'il ne sont pas adjacent retourne 99
 }
-
+bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numï¿½ro i
+{
+    bool adjacent=false;
+    for (auto it : m_adjacents)
+        if (it.first->get_id()==i)
+            adjacent=true;
+    return adjacent;
+}
 void Sommet::afficherAdj()
 {
     std::cout<<"Sommet "
@@ -59,15 +105,19 @@ void Sommet::afficherAdj()
                  <<"("<<it.second<<") "; //poids de l'arc
     }
 }
-bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numéro i
+void Sommet::reinitialiserCouleur()
 {
-    bool adjacent=false;
-    for (auto it : m_adjacents)
-        if (it.first->get_id()==i)
-            adjacent=true;
-    return adjacent;
+    m_couleur=0;
 }
 
+void Sommet::setCouleur(int nv)
+{
+    m_couleur=nv;
+}
+int Sommet::getCouleur()const
+{
+    return m_couleur;
+}
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
 {
     out << "Sommet " << s.m_id << " : " << " Nom : "<< s.m_nom << " x : " << s.m_x << " y : " << s.m_y;

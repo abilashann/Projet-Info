@@ -17,16 +17,22 @@ int main()
     Graphe dessin{"graphe_etoile1_topo.txt"};
     dessin.afficher();
     dessin.CritereProximite();
-    /*dessin.Dijkstra_pour_toutes_les aretes(0,0);*/
+    dessin.centraliteVecteurPropre();
+    dessin.centraliteDegre();
+    dessin.sauvegarde();
+    dessin.Connexite();
+    dessin.Suppressionarete();
+    dessin.CreationAdj();
+    dessin.afficher();
+    dessin.Connexite();
+
     return 0;
 }
 /*int main()
 {
     Graphe dessin{"graphe_etoile1_topo.txt"};
     int choix = 0;
-
     std::cout << "bienvenue sur l'accessibilite et la vulnerabilite des reseaux"<<std::endl;
-
     do
     {
         std::cout << std::endl;
@@ -36,7 +42,6 @@ int main()
         std::cout << "4. quitter"<<std::endl;
         std::cout << "que voulez-vous faire?"<< std::endl;
         std::cin >> choix;
-
         switch (choix)
         {
         case 1 :
@@ -54,7 +59,5 @@ int main()
         }
     }
     while(choix<1 || choix >4);
-
     return 0;
 }*/
-

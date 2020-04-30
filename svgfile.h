@@ -1,7 +1,5 @@
 #ifndef SVGFILE_H_INCLUDED
 #define SVGFILE_H_INCLUDED
-
-
 #include <string>
 #include <fstream>
 #include <set>
@@ -46,5 +44,5 @@ class Svgfile
         static std::set<std::string> s_openfiles;
 };
 
-
 #endif // SVGFILE_H_INCLUDED
+

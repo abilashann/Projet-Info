@@ -53,6 +53,10 @@ Graphe::Graphe (std::string nomFichier )
             m_arete.push_back(new Arete(fichier));
         }
     }
+   CreationAdj();
+}
+void Graphe::CreationAdj()
+{
     if(m_orientation==1)
     {
 
@@ -71,6 +75,8 @@ Graphe::Graphe (std::string nomFichier )
         }
     }
 }
+
+
 void Graphe::afficher()
 {
     int ordre = m_sommet.size();
@@ -140,8 +146,8 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
     for (auto it : m_sommet)
         it->setMarquage(0);
 
-    int tab_distance[m_sommet.size()]; //recupère les plus court chemin de s0 à chaque sommet parcouru
-    //std::vector <Sommet*> sommetsParcourus; //recupère la liste et l'odre dans lequel les sommets sont parcouru
+    int tab_distance[m_sommet.size()]; //recupï¿½re les plus court chemin de s0 ï¿½ chaque sommet parcouru
+    //std::vector <Sommet*> sommetsParcourus; //recupï¿½re la liste et l'odre dans lequel les sommets sont parcouru
     int tab_predecesseurs[m_sommet.size()];
 
     for (size_t i=0; i<m_sommet.size(); ++i)
@@ -166,32 +172,32 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
         //on determine le plus proche de s0 en partant de s
         for (auto it : m_sommet)
         {
-            if (s->estAdjacentA(it->get_id())) //si on peut aller de s à it
+            if (s->estAdjacentA(it->get_id())) //si on peut aller de s ï¿½ it
             {
                 distance=s->getDist(it->get_id());
 
-                if (tab_distance[it->get_id()]>tab_distance[s->get_id()]+distance)//si c'est plus court d'aller de s0 à it en passant par s
+                if (tab_distance[it->get_id()]>tab_distance[s->get_id()]+distance)//si c'est plus court d'aller de s0 ï¿½ it en passant par s
                 {
-                    //si on trouve un plus court chemin que celui en mémoire
+                    //si on trouve un plus court chemin que celui en mï¿½moire
                     tab_distance[it->get_id()]=tab_distance[s->get_id()]+distance;
                     tab_predecesseurs[it->get_id()]=s->get_id();
                 }
             }
 
         }
-        //recherche du plus près sommet de s0 qui n'a pas encore était étudié
+        //recherche du plus prï¿½s sommet de s0 qui n'a pas encore ï¿½tait ï¿½tudiï¿½
         for (size_t i=0; i<m_sommet.size(); ++i) //on parcours la tab de distance
         {
             if (m_sommet[i]->getMarquage()!=1) //pas parcouru
             {
-                if (tab_distance[i]<d_min) //si c'est le plus près
+                if (tab_distance[i]<d_min) //si c'est le plus prï¿½s
                 {
                     d_min=tab_distance[i];
-                    id_d_min=i; //on garde en mémoire l'identifiant du plus près
+                    id_d_min=i; //on garde en mï¿½moire l'identifiant du plus prï¿½s
                 }
             }
         }
-        s=m_sommet[id_d_min]; //le plus proche sommet pas encore etudier devient le prochain sommet à parcourir
+        s=m_sommet[id_d_min]; //le plus proche sommet pas encore etudier devient le prochain sommet ï¿½ parcourir
         s->setMarquage(1);//1 pour dire qu'on a trouver la plus petite distance
         //sommetsParcourus.push_back(s);
 
@@ -214,10 +220,10 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
         {
             do
             {
-                //on remonte le tableau jusqu'à ce que le predecesseur soit s0
+                //on remonte le tableau jusqu'ï¿½ ce que le predecesseur soit s0
                 pred = temp;
                 std::cout<<" <-- "<<pred; //on aficche chaque predecesseur
-                sommetsParcourus.push_back(m_sommet[pred]); //on ajoute à la liste chaque predecesseur
+                sommetsParcourus.push_back(m_sommet[pred]); //on ajoute ï¿½ la liste chaque predecesseur
                 temp=tab_predecesseurs[pred];
 
             }
@@ -225,7 +231,7 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
 
         }
 
-        else //si pas d'intermédiaire entre s0 et le sommet de fin
+        else //si pas d'intermï¿½diaire entre s0 et le sommet de fin
             std::cout<<" <-- "<<i_debut;
     }
 
@@ -253,8 +259,8 @@ void Graphe::Dijkstra_pour_toutes_les aretes(int i_debut,int i_fin)
 }*/
 void Graphe::CritereProximite()
 {
-    float Cn[m_sommet.size()]; // Normalisé
-    float Cnn[m_sommet.size()]; // Non normalisé
+    float Cn[m_sommet.size()]; // Normalisï¿½
+    float Cnn[m_sommet.size()]; // Non normalisï¿½
     float Somme=0;;
     int longeur=0;
     for (size_t i=0; i<m_sommet.size(); ++i)
@@ -285,5 +291,369 @@ void Graphe::CritereProximite()
 Somme=0;
 
     }
+}
+
+
+int Graphe::Dijkstra(int i_debut, int i_fin)
+{
+    int longeur=0;
+    ///initialisation
+    for (auto it : m_sommet)
+        it->setMarquage(0);
+
+    int tab_distance[m_sommet.size()]; //recupï¿½re les plus court chemin de s0 ï¿½ chaque sommet parcouru
+    //std::vector <Sommet*> sommetsParcourus; //recupï¿½re la liste et l'odre dans lequel les sommets sont parcouru
+    int tab_predecesseurs[m_sommet.size()];
+
+    for (size_t i=0; i<m_sommet.size(); ++i)
+        tab_distance[i]=999; //~infini
+
+    for (size_t i=0; i<m_sommet.size(); ++i)
+        tab_predecesseurs[i]=99;
+
+
+    Sommet*s=m_sommet[i_debut]; //s=s0
+    tab_distance[i_debut]=0;
+    m_sommet[i_debut]->setMarquage(1);//1 pour dire qu'on a trouver la plus petite distance
+    //sommetsParcourus.push_back(m_sommets[i_debut]);
+
+    int distance, d_min, id_d_min;
+
+    ///recherche
+
+    do
+    {
+        d_min=999;
+        //on determine le plus proche de s0 en partant de s
+        for (auto it : m_sommet)
+        {
+            if (s->estAdjacentA(it->get_id())) //si on peut aller de s ï¿½ it
+            {
+                distance=s->getDist(it->get_id());
+
+                if (tab_distance[it->get_id()]>tab_distance[s->get_id()]+distance)//si c'est plus court d'aller de s0 ï¿½ it en passant par s
+                {
+                    //si on trouve un plus court chemin que celui en mï¿½moire
+                    tab_distance[it->get_id()]=tab_distance[s->get_id()]+distance;
+                    tab_predecesseurs[it->get_id()]=s->get_id();
+                }
+            }
+
+        }
+        //recherche du plus prï¿½s sommet de s0 qui n'a pas encore ï¿½tait ï¿½tudiï¿½
+        for (size_t i=0; i<m_sommet.size(); ++i) //on parcours la tab de distance
+        {
+            if (m_sommet[i]->getMarquage()!=1) //pas parcouru
+            {
+                if (tab_distance[i]<d_min) //si c'est le plus prï¿½s
+                {
+                    d_min=tab_distance[i];
+                    id_d_min=i; //on garde en mï¿½moire l'identifiant du plus prï¿½s
+                }
+            }
+        }
+        s=m_sommet[id_d_min]; //le plus proche sommet pas encore etudier devient le prochain sommet ï¿½ parcourir
+        s->setMarquage(1);//1 pour dire qu'on a trouver la plus petite distance
+        //sommetsParcourus.push_back(s);
+
+    }
+    while (m_sommet[i_fin]->getMarquage()!=1);  //tant qu'on a pas trouver le plus court chemin jusqu'au sommet final
+
+
+    ///affichage
+
+    std::cout<<std::endl;
+
+    std::vector<Sommet*> sommetsParcourus; //liste de sommets en chemin
+    sommetsParcourus.push_back(m_sommet[i_fin]);
+    int pred;
+    int temp=tab_predecesseurs[i_fin];
+    if (temp!=99)
+    {
+        std::cout<<std::endl<<i_fin;
+        if (i_debut!=temp)
+        {
+            do
+            {
+                //on remonte le tableau jusqu'ï¿½ ce que le predecesseur soit s0
+                pred = temp;
+                std::cout<<" <-- "<<pred; //on aficche chaque predecesseur
+                sommetsParcourus.push_back(m_sommet[pred]); //on ajoute ï¿½ la liste chaque predecesseur
+                temp=tab_predecesseurs[pred];
+
+            }
+            while (i_debut!=pred);
+
+        }
+
+        else //si pas d'intermï¿½diaire entre s0 et le sommet de fin
+            std::cout<<" <-- "<<i_debut;
+    }
+
+    //on affiche la longeur pour chaque arc parcouru
+    std::cout<<" longeur = ";
+    size_t taille=sommetsParcourus.size();
+
+    if (taille!=1) //si s0 et le sommet final sont adjacents
+    {
+        for (size_t i=taille-1 ; i>1; --i) //sens inverse parce que pour remplir le vecteur on est partie de la fin
+        {
+            std::cout<<sommetsParcourus[i]->getDist(sommetsParcourus[i-1]->get_id())<<"+";
+        }
+        std::cout<<sommetsParcourus[1]->getDist(sommetsParcourus[0]->get_id())<<"=";
+    }
+    std::cout<<tab_distance[i_fin];
+    longeur=tab_distance[i_fin];
+    return longeur;
+}
+/*
+void Graphe::Dijkstra_pour_toutes_les aretes(int i_debut,int i_fin)
+{ for( int i_debut=0; i_debut<m_sommet.size();i_debut++){
+ for(int i_fin=0; i_fin<m_sommet.size();i_fin++){
+    Dijkstra(i_debut,int i_fin);}}
+}*/
+
+
+
+void Graphe::centraliteDegre()
+{
+    float Cd=0;
+    float Cdn=0;
+    int ordre = m_sommet.size();
+
+    for (size_t i =0 ; i<m_sommet.size(); ++i)
+    {
+        Cd = m_sommet[i]->get_degre();
+        m_sommet[i]->set_Cd(Cd);
+        std::cout<< "Cd " << i << " : " << m_sommet[i]->get_Cd() << std::endl;
+        Cdn=Cd/(ordre - 1);
+        m_sommet[i]->set_Cdn(Cdn);
+        std::cout<<"Cdn " << i << " : " << m_sommet[i]->get_Cdn() << std::endl;
+        std::cout << std::endl;
+    }
+}
+
+
+void Graphe::centraliteVecteurPropre()
+{
+    ///initialisation variable
+    float lambda = 0.0;
+    float lambda_prev = 0.0;
+
+    float somme_indice=0;
+    float NI = 0;
+
+
+    ///initialisation
+
+    for(size_t i = 0; i<m_sommet.size() ; i++)
+    {
+        m_sommet[i]->set_Cvp(1);
+        std::cout <<" indice n "<< i <<" : " << m_sommet[i]->get_Cvp() << std::endl;
+    }
+
+    /// calcul
+    do
+    {
+        ///parcours des sommets
+        for(size_t i = 0; i<m_sommet.size(); i++)
+        {
+            float somme_adj = 0.0;
+            somme_indice= 0;
+
+            ///parcours des adj de m_sommet[i]
+
+            for(auto it: m_sommet[i]->get_adj())
+            {
+                somme_adj+= it.first->get_Cvp();
+
+                ///std::cout << "TEST : " << it.first->get_Cvp() << std::endl;
+                m_sommet[i]->set_C(somme_adj);
+            }
+        }
+
+        for(size_t i = 0; i<m_sommet.size(); i++)
+        {
+
+            somme_indice += m_sommet[i]->get_C()* m_sommet[i]->get_C();
+            std::cout <<"somme des indices voisins : " << m_sommet[i]->get_C()  << std::endl;
+            std::cout <<"somme des indices voisins au carre : " << m_sommet[i]->get_C()* m_sommet[i]->get_C()  << std::endl;
+        }
+        std::cout << "somme indice TOTAL : " << somme_indice << std::endl;
+
+
+
+
+        ///calcul de lambda
+        lambda_prev = lambda;
+        lambda = sqrt(somme_indice);
+
+        std::cout << "lambda : " << lambda << "   lambda precedent : " << lambda_prev << std::endl;
+
+        /// calcul nouvel indice
+        for(size_t i=0 ; i<m_sommet.size(); i++)
+        {
+
+            NI = m_sommet[i]->get_C()/lambda;
+            m_sommet[i]->set_Cvp(NI);
+            std::cout << "calcule nouvel indice : " << m_sommet[i]->get_Cvp() << std::endl;
+        }
+    }
+    while(abs(lambda - lambda_prev) > 0.01);
+}
+
+
+void Graphe::CritereProximite()
+{
+    double Cp; // Normalisï¿½
+    double Cpn; // Non normalisï¿½
+    float Somme=0;;
+    int longeur=0;
+    for (size_t i=0; i<m_sommet.size(); ++i)
+    {
+        for (size_t y=0; y<m_sommet.size(); ++y)
+        {
+            if (i==y)
+            {
+                longeur=0;
+            }
+            else
+            {
+                longeur=Dijkstra(i,y);
+            }
+
+            Somme+=longeur;
+            longeur=0;
+        }
+        std::cout << std::endl;
+        std::cout << "Somme = :" << Somme<< std::endl;
+        if(Somme!=0)
+        {
+            Cp=((m_sommet.size()-1)/(Somme));
+            Cpn=((1)/(Somme));
+            m_sommet[i]->set_Cp(Cp);
+            m_sommet[i]->set_Cpn(Cpn);
+            std::cout<< "Cn numero :"<< i << " = " << m_sommet[i]->get_Cp() << std::endl;
+            std::cout<< "Cnn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
+        }
+        Somme=0;
+
+    }
+}
+void Graphe::sauvegarde()
+{
+    std::ofstream fichier("IndiceSave.txt");
+    if (fichier)
+    {
+        for (size_t i=0; i<m_sommet.size(); ++i)
+        {
+            fichier << i << " " << m_sommet[i]->get_Cd() << " " << m_sommet[i]->get_Cdn() << " "
+            << m_sommet[i]->get_Cvp() << " "
+            << m_sommet[i]->get_Cp() << " " << m_sommet[i]->get_Cpn() <<std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Impossible d'ecrire/ouvrir sur le fichier" <<std::endl;
+    }
+
+}
+void Graphe::Suppressionarete()
+{
+    int choix;
+    int indice;
+    std::cout << "Nombre d'arrete a supprimer? " <<std::endl;
+    std::cin >> choix;
+    for(int i=0;i<choix;++i)
+    {
+        std::cout << "Indice de l'arrete? " <<std::endl;
+        std::cin >> indice;
+        for(size_t j=0;j<m_arete.size();++j)
+        {
+            if(indice==m_arete[j]->get_id())
+                {
+                    m_sommet[m_arete[j]->get_ID1()]->suppadj(m_sommet[m_arete[j]->get_ID2()]);
+                    m_sommet[m_arete[j]->get_ID2()]->suppadj(m_sommet[m_arete[j]->get_ID1()]);
+                    m_arete.erase(m_arete.begin()+j);
+                }
+
+
+        }
+    }
+}
+void Graphe::recuDFS(std::map<int, int>& i_preds,Sommet* s)
+{
+    //algorithme recurence de Mme Palasi
+    s->setCouleur(1);//gris
+    for (auto it : m_sommet)
+    {
+        if (it->estAdjacentA(s->get_id()))
+        {
+            if (it->getCouleur()==0) //si ne fait pas dï¿½jï¿½ partie de la pile
+            {
+                i_preds[it->get_id()]=s->get_id();
+                recuDFS(i_preds,it); //par recurence
+
+            }
+        }
+
+    }
+    s->setCouleur(2); //met en noir
+
+}
+void Graphe::Connexite()
+{
+    int nbCompo=0;
+    bool stop = false;
+    std::map<int, int> i_preds; //liste des prdecesseurs pour le DFS
+    std::map<int,std::vector<int>> compoConnexes; //numï¿½ro et identidfiant des sommets de chaque composante
+
+    ///mets les sommets en blancs
+    for (auto it : m_sommet)
+        it->reinitialiserCouleur();
+
+    ///recherche de composante de sommets
+    do
+    {
+        stop=false;
+        for (auto it : m_sommet)
+        {
+
+            if (it->getCouleur()!=2 && !stop)
+            {
+                //si on dï¿½couvre un nouveau sommet qui n'a pas encore ï¿½tï¿½ rangï¿½ dan sune composante connexe
+                ++nbCompo; //nouvelle composante
+                compoConnexes[nbCompo].push_back(it->get_id()); //on ajoute le premier dans une nouvel composante que l'on crï¿½e
+                recuDFS(i_preds,it); //recherche de tous les sommets de la composante avec un DFS
+                if (!i_preds.empty())
+                    for (auto et : i_preds)
+                        compoConnexes[nbCompo].push_back(et.first); //on ajoute tous les sommets trouvï¿½ ï¿½ la composante
+
+
+                stop=true; //on s'occupe d'une composante ï¿½ la fois
+            }
+
+        }
+        i_preds.clear(); //on recommence en vidant la liste de sommets
+
+    }
+    while (stop); //tant qu'il a des sommets qui n'ont pas ï¿½tï¿½ parcouru
+
+    ///affichage
+    for (auto it : compoConnexes)
+    {
+        std::cout<<std::endl<<"Composante connexe "<<it.first<<" : ";
+        for (auto et : it.second)
+            std::cout<<et<<" ";
+    }
+std::cout<<"Composante taille : "<< compoConnexes.size()<<std::endl;
+if (compoConnexes.size()>1)
+{
+    std::cout<<"Le graph n'est pas connexe "<< std::endl;
+}
+else
+{
+    std::cout<<"Le graph est connexe "<< std::endl;
+}
 }
 

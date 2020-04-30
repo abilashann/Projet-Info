@@ -75,7 +75,7 @@ void Svgfile::addCircle(double x, double y, double r, double ep, std::string col
             << attrib("cx", x)
             << attrib("cy", y)
             << attrib("r",  r)
-            << attrib("fill", "none")
+            << attrib("fill", color)
             << attrib("stroke", color )
             << attrib("stroke-width", ep )
             << "/>\n";
