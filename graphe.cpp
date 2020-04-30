@@ -377,11 +377,30 @@ void Graphe::CritereProximite()
             m_sommet[i]->set_Cp(Cp);
             m_sommet[i]->set_Cpn(Cpn);
             std::cout<< "Cn numero :"<< i << " = " << m_sommet[i]->get_Cp() << std::endl;
-        std::cout<< "Cnn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
+            std::cout<< "Cnn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
         }
-Somme=0;
+        Somme=0;
 
     }
 }
+void Graphe::sauvegarde()
+{
+    std::ofstream fichier("IndiceSave.txt");
+    if (fichier)
+    {
+        for (size_t i=0; i<m_sommet.size(); ++i)
+        {
+            fichier << i << " " << m_sommet[i]->get_Cd() << " " << m_sommet[i]->get_Cdn() << " "
+            << m_sommet[i]->get_Cvp() << " "
+            << m_sommet[i]->get_Cp() << " " << m_sommet[i]->get_Cpn() <<std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Impossible d'ecrire/ouvrir sur le fichier" <<std::endl;
+    }
+
+}
+
 
 
