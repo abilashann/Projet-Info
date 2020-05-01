@@ -24,10 +24,6 @@ class Arete
         ///getteur
         void Adj(int num);
         void affichage();
-        int get_id();
-        int get_ID1();
-        int get_ID2();
-        int get_Poids();
         int get_id(){return m_id;}
         int get_ID1(){return m_ID1;}
         int get_ID2(){return m_ID2;}
