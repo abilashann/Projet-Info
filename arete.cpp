@@ -49,7 +49,6 @@ std::ostream& operator<< (std::ostream& out, const Arete& s)
     {
         std::cout << adj->m_num << " ";
     }*/
-
     return out;
 }
 
