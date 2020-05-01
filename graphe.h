@@ -18,7 +18,11 @@ class Graphe
 
     public:
         Graphe(std::string nomFichier);
-        int Dijkstra(int i_debut, int i_fin);
+        int Dijkstra_avec_affichage(int i_debut, int i_fin);
+        int Dijkstra_sans_affichage(int i_debut, int i_fin);
+        int Dijkstra_avec_affichageV2Passagesommet(int i_debut, int i_fin, int sommet);
+        int nombretotal(int sommet_choisi);
+        int Critere_intermediarite(int sommet_choisi);
         void afficher();
         void CreationAdj();
         void CritereProximite();

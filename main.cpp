@@ -5,17 +5,12 @@
 #include "graphe.h"
 
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include "graphe.h"
-
-
 int main()
 {
-    Graphe dessin{"graphe_etoile1_topo.txt"};
+    Graphe dessin{"graphe_etoile3_topo.txt"};
     dessin.afficher();
+    dessin.Critere_intermediarite(0);
+/*
     dessin.CritereProximite();
     dessin.centraliteVecteurPropre();
     dessin.centraliteDegre();
@@ -25,6 +20,8 @@ int main()
     dessin.CreationAdj();
     dessin.afficher();
     dessin.Connexite();
+    dessin.Dijkstra(0,1);*/
+
 
     return 0;
 }
