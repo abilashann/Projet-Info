@@ -1,5 +1,5 @@
 #include "scene.h"
-#include "svg/svgfile.h"
+#include "svgfile.h"
 /*
 Scene::Scene()
 {
