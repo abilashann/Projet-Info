@@ -4,14 +4,6 @@
 #include <vector>
 #include "graphe.h"
 
-
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include "graphe.h"
-
-
 int main()
 {
     Graphe dessin{"graphe_etoile1_topo.txt"};
@@ -19,28 +11,19 @@ int main()
     dessin.CritereProximite();
     dessin.centraliteVecteurPropre();
     dessin.centraliteDegre();
-<<<<<<< Updated upstream
-    dessin.sauvegarde();
-=======
 
     dessin.sauvegarde();
 
->>>>>>> Stashed changes
     dessin.Connexite();
     dessin.Suppressionarete();
     dessin.CreationAdj();
     dessin.afficher();
     dessin.Connexite();
 
-<<<<<<< Updated upstream
-=======
-    //dessin.CritereProximite();
     dessin.centraliteVecteurPropre();
     dessin.centraliteDegre();
 
     dessin.lectureFichierCentralite("IndiceSave.txt");
-    dessin.difference();
->>>>>>> Stashed changes
     return 0;
 }
 /*int main()
