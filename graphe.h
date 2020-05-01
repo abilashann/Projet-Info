@@ -7,7 +7,6 @@
 #include "sommet.h"
 #include "arete.h"
 
-
 class Graphe
 {
     private:
@@ -34,6 +33,7 @@ class Graphe
         void lectureFichierCentralite(std::string nomFichier);
         void difference();
 >>>>>>> Stashed changes
+
 };
 
 #endif // GRAPHE_H_INCLUDED
