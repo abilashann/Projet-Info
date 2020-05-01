@@ -20,6 +20,7 @@ int main()
     dessin.afficher();
     dessin.Connexite();
 
+    dessin.CritereProximite();
     dessin.centraliteVecteurPropre();
     dessin.centraliteDegre();
 
