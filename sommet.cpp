@@ -12,83 +12,18 @@ Sommet::Sommet (std::istream& is)
                 throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
 }
 
-int Sommet::get_id()
-{
-    return m_id;
-}
-std::string Sommet::get_nom()
-{
-    return m_nom;
-}
-int Sommet::get_x()
-{
-    return m_x;
-}
-int Sommet::get_y()
-{
-    return m_y;
-}
-int Sommet::getMarquage()const
-{
-    return m_marquage;
-}
-
-void Sommet::setMarquage(int nv)
-{
-    m_marquage=nv;
-}
-void Sommet::set_Cp(double nv)
-{
-    m_Cp=nv;
-}
-void Sommet::set_Cpn(double nv)
-{
-    m_Cpn=nv;
-}
-
-float Sommet::get_Cvp()
-{
-    return m_Cvp;
-}
-
-int Sommet::get_Cd()
-{
-    return m_Cd;
-}
-
-double Sommet::get_Cp()
-{
-    return m_Cp;
-}
-double Sommet::get_Cpn()
-{
-    return m_Cpn;
-}
-
-int Sommet::set_Cd(int cd)
-{
-    return m_Cd= cd;
-}
-
 void Sommet::remplir(Sommet* adjacent,int poids)
 {
      m_adjacents.emplace(adjacent,poids);
 }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 void Sommet::suppadj(Sommet* j)
 {
     auto it= m_adjacents.find(j);
     m_adjacents.erase(j);
 }
-<<<<<<< Updated upstream
-int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet ï¿½ un autre sommet de numï¿½ro i
-=======
 
 int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
->>>>>>> Stashed changes
 {
     int d=99;
     for (auto it : m_adjacents)
@@ -97,6 +32,7 @@ int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un au
     return d; //s'il ne sont pas adjacent retourne 99
 }
 
+bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numéro i
 {
     bool adjacent=false;
     for (auto it : m_adjacents)
@@ -104,6 +40,7 @@ int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un au
             adjacent=true;
     return adjacent;
 }
+
 void Sommet::afficherAdj()
 {
     std::cout<<"Sommet "
