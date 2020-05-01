@@ -97,6 +97,8 @@ int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un au
     return d; //s'il ne sont pas adjacent retourne 99
 }
 bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numï¿½ro i
+
+bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numï¿½ro i
 {
     bool adjacent=false;
     for (auto it : m_adjacents)
@@ -114,27 +116,12 @@ void Sommet::afficherAdj()
                  <<"("<<it.second<<") "; //poids de l'arc
     }
 }
+
 void Sommet::reinitialiserCouleur()
 {
     m_couleur=0;
 }
 
-<<<<<<< Updated upstream
-void Sommet::setCouleur(int nv)
-{
-    m_couleur=nv;
-}
-int Sommet::getCouleur()const
-{
-    return m_couleur;
-}
-=======
-void Sommet::reinitialiserCouleur()
-{
-    m_couleur=0;
-}
-
->>>>>>> Stashed changes
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
 {
     out << "Sommet " << s.m_id << " : " << " Nom : "<< s.m_nom << " x : " << s.m_x << " y : " << s.m_y;
