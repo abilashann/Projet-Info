@@ -260,15 +260,19 @@ void Graphe::Dijkstra_pour_toutes_les aretes(int i_debut,int i_fin)
 
 void Graphe::centraliteDegre()
 {
+    ///initialisation
     float Cd=0;
     float Cdn=0;
     int ordre = m_sommet.size();
 
     for (size_t i =0 ; i<m_sommet.size(); ++i)
     {
+        //on récupère le degre [i] du sommet que l'on met dans la variable
+        //on met cet valeur dans le Cd de la classe sommet
         Cd = m_sommet[i]->get_degre();
         m_sommet[i]->set_Cd(Cd);
         std::cout<< "Cd " << i << " : " << m_sommet[i]->get_Cd() << std::endl;
+        //calcul de Cp normalisé
         Cdn=Cd/(ordre - 1);
         m_sommet[i]->set_Cdn(Cdn);
         std::cout<<"Cdn " << i << " : " << m_sommet[i]->get_Cdn() << std::endl;
@@ -314,7 +318,7 @@ void Graphe::centraliteVecteurPropre()
                 m_sommet[i]->set_C(somme_adj);
             }
         }
-
+        ///on recupère la somme des indices par sommet et Total
         for(size_t i = 0; i<m_sommet.size(); i++)
         {
 
@@ -324,32 +328,26 @@ void Graphe::centraliteVecteurPropre()
         }
         std::cout << "somme indice TOTAL : " << somme_indice << std::endl;
 
-
-
-
         ///calcul de lambda
         lambda_prev = lambda;
         lambda = sqrt(somme_indice);
-
         std::cout << "lambda : " << lambda << "   lambda precedent : " << lambda_prev << std::endl;
 
         /// calcul nouvel indice
         for(size_t i=0 ; i<m_sommet.size(); i++)
         {
-
             NI = m_sommet[i]->get_C()/lambda;
             m_sommet[i]->set_Cvp(NI);
             std::cout << "calcule nouvel indice : " << m_sommet[i]->get_Cvp() << std::endl;
         }
     }
-    while(abs(lambda - lambda_prev) > 0.01);
+    while(abs(lambda - lambda_prev) > 0.01); // condition pour que lambda soit stable
 }
-
 
 void Graphe::CritereProximite()
 {
-    double Cp; // Normalisé
-    double Cpn; // Non normalisé
+    double Cp; // non Normalisé
+    double Cpn; // normalisé
     float Somme=0;;
     int longeur=0;
     for (size_t i=0; i<m_sommet.size(); ++i)
@@ -380,9 +378,9 @@ void Graphe::CritereProximite()
             std::cout<< "Cpn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
         }
         Somme=0;
-
     }
 }
+
 void Graphe::sauvegarde()
 {
     std::ofstream fichier("IndiceSave.txt");
@@ -401,6 +399,32 @@ void Graphe::sauvegarde()
     }
 
 }
+<<<<<<< Updated upstream
+=======
+
+void Graphe::Suppressionarete()
+{
+    int taille = m_arete.size();
+    int choix;
+    int indice;
+
+    std::cout << "il y a : "<< taille << " arete dans le graph" <<std::endl;
+    std::cout << "Nombre d'arrete a supprimer? " <<std::endl;
+    std::cin >> choix;
+    for(int i=0;i<choix;++i)
+    {
+        std::cout << "Indice de l'arrete? " <<std::endl;
+        std::cin >> indice;
+        for(size_t j=0;j<m_arete.size();++j)
+        {
+            if(indice==m_arete[j]->get_id())
+                {
+                    m_sommet[m_arete[j]->get_ID1()]->suppadj(m_sommet[m_arete[j]->get_ID2()]);
+                    m_sommet[m_arete[j]->get_ID2()]->suppadj(m_sommet[m_arete[j]->get_ID1()]);
+                    m_arete.erase(m_arete.begin()+j);
+                }
+
+>>>>>>> Stashed changes
 
 
 
