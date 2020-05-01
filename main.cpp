@@ -16,9 +16,9 @@ int main()
 {
     Graphe dessin{"graphe_etoile1_topo.txt"};
     dessin.afficher();
-    dessin.CritereProximite();
+    ///dessin.CritereProximite();
     dessin.centraliteVecteurPropre();
-    dessin.centraliteDegre();
+    ///dessin.centraliteDegre();
     dessin.sauvegarde();
     return 0;
 }
