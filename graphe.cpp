@@ -376,8 +376,8 @@ void Graphe::CritereProximite()
             Cpn=((1)/(Somme));
             m_sommet[i]->set_Cp(Cp);
             m_sommet[i]->set_Cpn(Cpn);
-            std::cout<< "Cn numero :"<< i << " = " << m_sommet[i]->get_Cp() << std::endl;
-            std::cout<< "Cnn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
+            std::cout<< "Cp numero :"<< i << " = " << m_sommet[i]->get_Cp() << std::endl;
+            std::cout<< "Cpn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
         }
         Somme=0;
 
@@ -390,9 +390,9 @@ void Graphe::sauvegarde()
     {
         for (size_t i=0; i<m_sommet.size(); ++i)
         {
-            fichier << i << " " << m_sommet[i]->get_Cd() << " " << m_sommet[i]->get_Cdn() << " "
-            << m_sommet[i]->get_Cvp() << " "
-            << m_sommet[i]->get_Cp() << " " << m_sommet[i]->get_Cpn() <<std::endl;
+            fichier << "sommet : " << i << "    Cd : " << m_sommet[i]->get_Cd() << "    Cdn :  " << m_sommet[i]->get_Cdn() << "    Cvp : "
+            << m_sommet[i]->get_Cvp() << "    Cp :  "
+            << m_sommet[i]->get_Cp() << "    Cpn : " << m_sommet[i]->get_Cpn() <<std::endl;
         }
     }
     else
