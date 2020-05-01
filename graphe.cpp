@@ -573,5 +573,4 @@ void Graphe :: lectureFichierCentralite(std::string nomFichier)
         std::cout <<" diff_Cp :  "<<diff_Cp  << " diff_Cpn :  "<< diff_Cpn << std::endl;
         std::cout <<std::endl;
     }
->>>>>>> Stashed changes
 }
