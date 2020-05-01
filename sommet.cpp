@@ -96,9 +96,7 @@ int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un au
             d=it.second;
     return d; //s'il ne sont pas adjacent retourne 99
 }
-bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numï¿½ro i
 
-bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numï¿½ro i
 {
     bool adjacent=false;
     for (auto it : m_adjacents)
