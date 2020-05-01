@@ -27,12 +27,7 @@ class Graphe
         void Suppressionarete();
         void Connexite();
         void recuDFS(std::map<int, int>& i_preds,Sommet* s);
-<<<<<<< Updated upstream
-
-=======
         void lectureFichierCentralite(std::string nomFichier);
-        void difference();
->>>>>>> Stashed changes
 
 };
 
