@@ -51,6 +51,7 @@
 <text x="300" y="195" fill="black" >D</text>
 <circle cx="200" cy="300" r="5" fill="black" stroke="black" stroke-width="1" />
 <text x="200" y="295" fill="black" >E</text>
+<line x1="200" y1="100" x2="200" y2="200" stroke="black" />
 <line x1="100" y1="200" x2="200" y2="200" stroke="black" />
 <line x1="200" y1="200" x2="300" y2="200" stroke="black" />
 <line x1="200" y1="200" x2="200" y2="300" stroke="black" />
