@@ -454,6 +454,7 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
 
 void Graphe::centraliteDegre()
 {
+    ///initialisation
     float Cd=0;
     float Cdn=0;
     int ordre = m_sommet.size();
@@ -609,11 +610,14 @@ void Graphe::CritereProximite()
             m_sommet[i]->set_Cpn(Cpn);
             std::cout<< "Cn numero :"<< i << " = " << m_sommet[i]->get_Cp() << std::endl;
             std::cout<< "Cnn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
+            std::cout<< "Cp numero :"<< i << " = " << m_sommet[i]->get_Cp() << std::endl;
+            std::cout<< "Cpn numero :"<< i << " = " << m_sommet[i]->get_Cpn() << std::endl;
         }
         Somme=0;
 
     }
 }
+
 void Graphe::sauvegarde()
 {
     std::ofstream fichier("IndiceSave.txt");
@@ -843,6 +847,13 @@ void Graphe :: lectureFichierCentralite(std::string nomFichier)
     float Cp_modif;
     float Cpn_modif;
 
+    float diff_Cd;
+    float diff_Cdn;
+    float diff_Cvp;
+    float diff_Cvpn;
+    float diff_Cp;
+    float diff_Cpn;
+
     std::ifstream fichier(nomFichier);
     for (size_t i=0; i<m_sommet.size(); ++i)
     {
@@ -889,6 +900,10 @@ void Graphe :: difference()
         std::cout <<" Cd_modif :  "<< m_sommet[i]->get_Cd_modif() << " Cdn_modif :  "<< m_sommet[i]->get_Cdn_modif();
         std::cout <<" Cvp_modif :  "<< m_sommet[i]->get_Cvp_modif() << " Cvpn_modif :  "<< m_sommet[i]->get_Cvpn_modif();
         std::cout <<" Cp_modif :  "<< m_sommet[i]->get_Cp_modif() << " Cpn_modif :  "<< m_sommet[i]->get_Cpn_modif()<< std::endl;
+        std::cout << "identifiant: " << identifiant;
+        std::cout <<" Cd_modif :  "<< Cd_modif << " Cdn_modif :  "<< Cdn_modif;
+        std::cout <<" Cvp_modif :  "<< Cvp_modif << " Cvpn_modif :  "<< Cvpn_modif;
+        std::cout <<" Cp_modif :  "<< Cp_modif << " Cpn_modif :  "<< Cpn_modif<< std::endl;
 
         std::cout <<"indice de centralite obtenus apres changement " << std::endl;
         std::cout <<"identifiant : "<< i;
@@ -903,6 +918,12 @@ void Graphe :: difference()
         diff_Cvpn = abs(m_sommet[i]->get_Cvpn()- m_sommet[i]->get_Cvpn_modif());
         diff_Cp = abs(m_sommet[i]->get_Cp()- m_sommet[i]->get_Cp_modif());
         diff_Cpn = abs(m_sommet[i]->get_Cpn()- m_sommet[i]->get_Cpn_modif());
+        diff_Cd = abs(m_sommet[i]->get_Cd()- Cd_modif);
+        diff_Cdn = abs(m_sommet[i]->get_Cdn()- Cdn_modif);
+        diff_Cvp = abs(m_sommet[i]->get_Cvp()- Cvp_modif);
+        diff_Cvpn = abs(m_sommet[i]->get_Cvpn()- Cvpn_modif);
+        diff_Cp = abs(m_sommet[i]->get_Cp()- Cp_modif);
+        diff_Cpn = abs(m_sommet[i]->get_Cpn()- Cpn_modif);
     }
 
     for (size_t i=0; i<m_sommet.size(); ++i)
