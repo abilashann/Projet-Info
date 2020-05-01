@@ -17,15 +17,24 @@ class Arete
         std::vector<Arete*> m_adj;
 
     public:
+        ///constructeur
         Arete (std::istream& is, std::istream& is2);
         Arete(std::istream& is);
+
+        ///getteur
         void Adj(int num);
         void affichage();
         int get_id();
         int get_ID1();
         int get_ID2();
         int get_Poids();
+        int get_id(){return m_id;}
+        int get_ID1(){return m_ID1;}
+        int get_ID2(){return m_ID2;}
+        int get_Poids(){return m_poids;}
         std::vector<Arete*> get_adj();
+
+        ///fonction
         friend std::ostream& operator<< (std::ostream& out, const Arete& s);
 
 
