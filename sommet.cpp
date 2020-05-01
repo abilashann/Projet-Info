@@ -74,12 +74,21 @@ void Sommet::remplir(Sommet* adjacent,int poids)
 {
      m_adjacents.emplace(adjacent,poids);
 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 void Sommet::suppadj(Sommet* j)
 {
     auto it= m_adjacents.find(j);
     m_adjacents.erase(j);
 }
+<<<<<<< Updated upstream
 int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet ï¿½ un autre sommet de numï¿½ro i
+=======
+
+int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
+>>>>>>> Stashed changes
 {
     int d=99;
     for (auto it : m_adjacents)
@@ -110,6 +119,7 @@ void Sommet::reinitialiserCouleur()
     m_couleur=0;
 }
 
+<<<<<<< Updated upstream
 void Sommet::setCouleur(int nv)
 {
     m_couleur=nv;
@@ -118,12 +128,16 @@ int Sommet::getCouleur()const
 {
     return m_couleur;
 }
+=======
+void Sommet::reinitialiserCouleur()
+{
+    m_couleur=0;
+}
+
+>>>>>>> Stashed changes
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
 {
     out << "Sommet " << s.m_id << " : " << " Nom : "<< s.m_nom << " x : " << s.m_x << " y : " << s.m_y;
 
     return out;
 }
-
-
-
