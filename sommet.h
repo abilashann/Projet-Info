@@ -19,10 +19,13 @@ class Sommet
         int m_y;
 
         ///indice
-        float m_Cvp;
+        //degre
         float m_Cd;
         float m_Cdn;
-        float m_C;
+        //vecteur propre
+        float m_Cvp;
+        float m_Cvpn;
+        //proximite
         double m_Cp;
         double m_Cpn;
 
@@ -35,48 +38,52 @@ class Sommet
     public:
         /// constructeur
         Sommet (std::istream& is);
+        friend std::ostream& operator<< (std::ostream& out, const Sommet& s);
 
         ///getter
-        int get_id();
-        std::string get_nom();
-        int get_x();
-        int get_y();
 
-        void Adj(int num);
-        void affichage();
-        void suppadj(Sommet* j);
-        void reinitialiserCouleur();
-        void setCouleur(int nv);
-        int getCouleur()const;
+        //propriete
+        int get_id() {return m_id;}
+        std::string get_nom() {return m_nom; }
+        int get_x() {return m_x;}
+        int get_y() {return m_y; }
 
-        std::map<Sommet*,int> get_adj() {return m_adjacents;}
-
-        float get_Cvp();
+        //indice centralite
+        float get_Cd(){return m_Cd;}
         float get_Cdn() {return m_Cdn;}
-        int get_Cd();
-        double get_Cp();
-        double get_Cpn();
+        float get_Cvp() {return m_Cvp;}
+        float get_Cvpn(){return m_Cvpn;}
+        double get_Cp(){return m_Cp;}
+        double get_Cpn(){return m_Cpn;}
+
         int get_degre() {return m_adjacents.size();}
-        float get_C() {return m_C;}
-
-        ///setter
-        void setMarquage(int nv);
-        void set_Cvp(float NV) {m_Cvp = NV; }
-        void set_Cp(double NV);
-        void set_Cpn(double NV);
-        int set_Cd(int cd);
-        void set_C(float C) {m_C= C;}
-        void set_Cdn(float cdn) {m_Cdn = cdn;}
-
-        friend std::ostream& operator<< (std::ostream& out, const Sommet& s);
-        void remplir(Sommet* adjacent,int poids);
-        void afficherAdj();
-
-        bool estAdjacentA(int i);
-        int getMarquage()const;
+        std::map<Sommet*,int> get_adj() {return m_adjacents;}
         int getDist(int i);
 
+        int getMarquage()const {return m_marquage;}
+        int getCouleur()const {return m_couleur;}
 
+        ///setter
+        //indice centralité
+        void set_Cd(int nv) {m_Cd = nv;}
+        void set_Cdn(float nv) {m_Cdn = nv;}
+        void set_Cvp(float nv) {m_Cvp = nv;}
+        void set_Cvpn(float nv) {m_Cvpn = nv; }
+        void set_Cp(double nv) {m_Cp = nv;}
+        void set_Cpn(double nv){m_Cpn = nv;}
+
+        void setMarquage(int nv) {m_marquage = nv;}
+        void setCouleur(int nv) {m_couleur = nv;}
+
+        ///fonction
+        void affichage();
+        void afficherAdj();
+        void remplir(Sommet* adjacent,int poids);
+        bool estAdjacentA(int i);
+        void Adj(int num);
+        void suppadj(Sommet* j);
+        void reinitialiserCouleur();
+        void changementpoids(int id1,int id2, int poids);
 };
 
 #endif // SOMMET_H_INCLUDED

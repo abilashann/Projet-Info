@@ -9,7 +9,7 @@ Arete::Arete (std::istream& is,std::istream& is2)
     is >> m_id >> m_ID1 >> m_ID2;
                 if ( is.fail() )
                 throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
-    is2 >> m_id2 >> m_poids;
+
 }
 
 Arete::Arete (std::istream& is)
@@ -18,29 +18,13 @@ Arete::Arete (std::istream& is)
                 if ( is.fail() )
                 throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
 }
-/*void Arete::Adj(int nbre)
+int Arete::set_Poids(int val)
 {
-    m_adj.push_back(new Arete(nbre));
-}*/
-
-
-int Arete::get_id()
-{
-    return m_id;
+    m_poids=val;
 }
-
-int Arete::get_ID1()
+int Arete::set_id2(int val)
 {
-    return m_ID1;
-}
-
-int Arete::get_ID2()
-{
-    return m_ID2;
-}
-int Arete::get_Poids()
-{
-    return m_poids;
+    m_id2=val;
 }
 std::ostream& operator<< (std::ostream& out, const Arete& s)
 {
@@ -49,7 +33,6 @@ std::ostream& operator<< (std::ostream& out, const Arete& s)
     {
         std::cout << adj->m_num << " ";
     }*/
-
     return out;
 }
 

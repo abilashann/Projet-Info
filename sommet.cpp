@@ -7,79 +7,21 @@
 Sommet::Sommet (std::istream& is)
 {
     is >> m_id >> m_nom >> m_x >> m_y ;
-            //std::cout<< m_id<<std::endl;
-            if ( is.fail() )
-                throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
-}
-
-int Sommet::get_id()
-{
-    return m_id;
-}
-std::string Sommet::get_nom()
-{
-    return m_nom;
-}
-int Sommet::get_x()
-{
-    return m_x;
-}
-int Sommet::get_y()
-{
-    return m_y;
-}
-
-int Sommet::getMarquage()const
-{
-    return m_marquage;
-}
-
-void Sommet::setMarquage(int nv)
-{
-    m_marquage=nv;
-}
-void Sommet::set_Cp(double nv)
-{
-    m_Cp=nv;
-}
-void Sommet::set_Cpn(double nv)
-{
-    m_Cpn=nv;
-}
-
-float Sommet::get_Cvp()
-{
-    return m_Cvp;
-}
-
-int Sommet::get_Cd()
-{
-    return m_Cd;
-}
-
-double Sommet::get_Cp()
-{
-    return m_Cp;
-}
-double Sommet::get_Cpn()
-{
-    return m_Cpn;
-}
-
-int Sommet::set_Cd(int cd)
-{
-    return m_Cd= cd;
+    //std::cout<< m_id<<std::endl;
+    if ( is.fail() )
+        throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
 }
 
 void Sommet::remplir(Sommet* adjacent,int poids)
 {
-     m_adjacents.emplace(adjacent,poids);
+    m_adjacents.emplace(adjacent,poids);
 }
+
 void Sommet::suppadj(Sommet* j)
 {
-    auto it= m_adjacents.find(j);
     m_adjacents.erase(j);
 }
+
 int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un autre sommet de numéro i
 {
     int d=99;
@@ -88,6 +30,7 @@ int Sommet::getDist (int i) //retourne la poid de l'arc allant du sommet à un au
             d=it.second;
     return d; //s'il ne sont pas adjacent retourne 99
 }
+
 bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un autre sommet de numéro i
 {
     bool adjacent=false;
@@ -96,14 +39,27 @@ bool Sommet::estAdjacentA(int i) //dertmine si on peut aller du sommet au un aut
             adjacent=true;
     return adjacent;
 }
+
 void Sommet::afficherAdj()
 {
     std::cout<<"Sommet "
-                        <<m_id<<" : ";
+             <<m_id<<" : ";
     for (auto it : m_adjacents)
     {
         std::cout<<it.first->get_id()<<""  //identifiant
-                 <<"("<<it.second<<") "; //poids de l'arc
+                 <<"("<<it.second<<") ";
+    }
+
+}
+void Sommet::changementpoids(int id1,int id2, int poids)
+{
+    for (auto &it : m_adjacents)
+    {
+        if(m_id==id1 && it.first->get_id()== id2 )
+        {
+            it.second=poids;//poids de l'arc
+        }
+
     }
 }
 void Sommet::reinitialiserCouleur()
@@ -111,20 +67,9 @@ void Sommet::reinitialiserCouleur()
     m_couleur=0;
 }
 
-void Sommet::setCouleur(int nv)
-{
-    m_couleur=nv;
-}
-int Sommet::getCouleur()const
-{
-    return m_couleur;
-}
 std::ostream& operator<< (std::ostream& out, const Sommet& s)
 {
     out << "Sommet " << s.m_id << " : " << " Nom : "<< s.m_nom << " x : " << s.m_x << " y : " << s.m_y;
 
     return out;
 }
-
-
-
