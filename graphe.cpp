@@ -318,9 +318,6 @@ int Graphe::Dijkstra_avec_affichageV2Passagesommet(int i_debut, int i_fin, int s
     while (m_sommet[i_fin]->getMarquage()!=1);  //tant qu'on a pas trouver le plus court chemin jusqu'au sommet final
 
     ///affichage
-
-    std::cout<<std::endl;
-
     std::vector<Sommet*> sommetsParcourus; //liste de sommets en chemin
     sommetsParcourus.push_back(m_sommet[i_fin]);
     int pred;
@@ -335,12 +332,11 @@ int Graphe::Dijkstra_avec_affichageV2Passagesommet(int i_debut, int i_fin, int s
                 //on remonte le tableau jusqu'à ce que le predecesseur soit s0
                 pred = temp;
                 std::cout<<" <-- "<<pred; //on aficche chaque predecesseur
-                sommetsParcourus.push_back(m_sommet[pred]); //on ajoute à la liste chaque predecesseur
+                sommetsParcourus.push_back(m_sommet[pred]);//on ajoute à la liste chaque predecesseur
                 if(temp==sommet_choisi){
                     longueur2=1;
                 }
                 temp=tab_predecesseurs[pred];
-
             }
             while (i_debut!=pred);
 
@@ -348,6 +344,7 @@ int Graphe::Dijkstra_avec_affichageV2Passagesommet(int i_debut, int i_fin, int s
 
         else //si pas d'intermédiaire entre s0 et le sommet de fin
             std::cout<<" <-- "<<i_debut;
+            std::cout<<";";
 
     }
     return longueur2;
@@ -422,7 +419,11 @@ int Graphe::Critere_intermediarite(int sommet_choisi)
 {
     int nombre=0;
     int nombre1=0;
-    int indice=0;
+    float indice=0;
+    float indicenormalise=0;
+    for (int k=0; k<9; k++)
+    { sommet_choisi=m_sommet[k]->get_id();
+
     for (int i=0; i<m_sommet.size(); i++)
     {
         for(int j=i; j<m_sommet.size(); j++)
@@ -447,8 +448,13 @@ int Graphe::Critere_intermediarite(int sommet_choisi)
             }
         }
     }
-    std::cout<<"\nL'indice d'intermediarite est egal :"<<indice;
+    indicenormalise=indicenormalise+2*indice/(m_sommet.size()*m_sommet.size()-3*m_sommet.size()+2);
+    std::cout<<"\nPour le sommet:"<<sommet_choisi<<"\nL'indice d'intermediarite non normalisé est egal :"<<indice<<"\nL'indice nromalisé est egal:"<<indicenormalise;
+    indice=0;
+    indicenormalise=0;
+    }
     return indice;
+
 }
 /*
 void Graphe::Dijkstra_pour_toutes_les aretes(int i_debut,int i_fin)

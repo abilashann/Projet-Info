@@ -7,7 +7,8 @@
 
 int main()
 {
-    Graphe dessin{"graphe_etoile3_topo.txt"};
+    system("mode con LINES=1000 COLS=100");//permet d'avoir mille lignes dans la console.
+    Graphe dessin{"graphe_cycle4_topo.txt"};
     dessin.afficher();
     dessin.Critere_intermediarite(0);
 /*
