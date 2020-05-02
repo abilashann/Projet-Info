@@ -18,7 +18,6 @@ class Arete
 
     public:
         ///constructeur
-        Arete (std::istream& is, std::istream& is2);
         Arete(std::istream& is);
 
         ///getteur
@@ -28,8 +27,8 @@ class Arete
         int get_ID1(){return m_ID1;}
         int get_ID2(){return m_ID2;}
         int get_Poids(){return m_poids;}
-        int set_id2(int val);
-        int set_Poids(int val);
+        void set_id2(int val);
+        void set_Poids(int val);
         std::vector<Arete*> get_adj();
 
         ///fonction

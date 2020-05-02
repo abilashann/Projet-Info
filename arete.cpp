@@ -4,13 +4,6 @@
 #include <string>
 #include <vector>
 
-Arete::Arete (std::istream& is,std::istream& is2)
-{
-    is >> m_id >> m_ID1 >> m_ID2;
-                if ( is.fail() )
-                throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
-
-}
 
 Arete::Arete (std::istream& is)
 {
@@ -18,11 +11,11 @@ Arete::Arete (std::istream& is)
                 if ( is.fail() )
                 throw std::runtime_error("Probleme lecture id,x,y d'une Sommet");
 }
-int Arete::set_Poids(int val)
+void Arete::set_Poids(int val)
 {
     m_poids=val;
 }
-int Arete::set_id2(int val)
+void Arete::set_id2(int val)
 {
     m_id2=val;
 }
