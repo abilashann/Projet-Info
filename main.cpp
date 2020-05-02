@@ -20,7 +20,7 @@ int main()
         {
             std::cout << std::endl;
             std::cout << "--------------------------------------------------------  MENU  --------------------------------------------------------"<<std::endl;
-            std::cout << "  1. Afficher ( Console et SVG)"<<std::endl;
+            std::cout << "  1. Afficher (Console et SVG)"<<std::endl;
             std::cout << std::endl;
             std::cout << "  2. changer le systeme de ponderation"<<std::endl;
             std::cout << std::endl;
@@ -33,12 +33,12 @@ int main()
             std::cout << "  4. test de vulnerabilite"<<std::endl;
             std::cout << "              - supprimer une ou plusieurs aretes"<< std::endl;
             std::cout << "              - tester la connexite du graphe"<< std::endl;
+            std::cout << "              - calcul des nouveaux indices de centralites pour les comparer avec ceux obtenus avant suppression"<< std::endl;
             std::cout << std::endl;
-            std::cout << "              - calcul des nouveaux indices de centralités pour les comparer avec ceux obtenus avant suppression"<< std::endl;
             std::cout << "  5. quitter le programme"<<std::endl;
             std::cout <<std::endl;
             std::cout << "------------------------------------------------------------------------------------------------------------------------"<<std::endl;
-            std::cout << "      que voulez-vous faire? : ";
+            std::cout << "      Que voulez-vous faire? : ";
             std::cin >> choix;
             std::cout << std::endl << std::endl;
 
