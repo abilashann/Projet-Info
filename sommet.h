@@ -15,8 +15,8 @@ class Sommet
         ///propriete
         int m_id;
         std::string m_nom;
-        int m_x;
-        int m_y;
+        double m_x;
+        double m_y;
 
         ///indice
         //degre
@@ -28,6 +28,9 @@ class Sommet
         //proximite
         double m_Cp;
         double m_Cpn;
+        //Intermediarite
+        double m_Ct;
+        double m_Ctn;
 
         int m_marquage;
         int m_couleur;
@@ -45,8 +48,8 @@ class Sommet
         //propriete
         int get_id() {return m_id;}
         std::string get_nom() {return m_nom; }
-        int get_x() {return m_x;}
-        int get_y() {return m_y; }
+        double get_x() {return m_x;}
+        double get_y() {return m_y; }
 
         //indice centralite
         float get_Cd(){return m_Cd;}
@@ -55,6 +58,8 @@ class Sommet
         float get_Cvpn(){return m_Cvpn;}
         double get_Cp(){return m_Cp;}
         double get_Cpn(){return m_Cpn;}
+        double get_Ct(){return m_Ct;}
+        double get_Ctn(){return m_Ctn;}
 
         int get_degre() {return m_adjacents.size();}
         std::map<Sommet*,int> get_adj() {return m_adjacents;}
@@ -71,6 +76,8 @@ class Sommet
         void set_Cvpn(float nv) {m_Cvpn = nv; }
         void set_Cp(double nv) {m_Cp = nv;}
         void set_Cpn(double nv){m_Cpn = nv;}
+        void set_Ct(double nv) {m_Ct = nv;}
+        void set_Ctn(double nv) {m_Ctn = nv;}
 
         void setMarquage(int nv) {m_marquage = nv;}
         void setCouleur(int nv) {m_couleur = nv;}

@@ -8,14 +8,15 @@ int main()
 {
     int on=1;
     int choix = 0;
-    std::string nom="graphe_cycle4_topo.txt";
-    std::cout << "Choisissez le nom du fichier a ouvrir : (Le std::cin est en commentaire juste apres)"<< std::endl;
-    //std::cin >> nom;
+    std::string nom;
+    std::cout << "                                    ---> ACCESSIBILITE ET VULNERABILITE DES RESEAUX <--- "<<std::endl << std::endl;
+    std::cout << "Choisissez le nom du fichier a ouvrir : "<< std::endl;
+    std::cin >> nom;
     Graphe dessin{nom};
     do
     {
 
-        std::cout << "                                    ---> ACCESSIBILITE ET VULNERABILITE DES RESEAUX <--- "<<std::endl;
+
         do
         {
             std::cout << std::endl;
@@ -28,7 +29,6 @@ int main()
             std::cout << "              - centralite de degre"<< std::endl;
             std::cout << "              - centralite de vecteur propre"<< std::endl;
             std::cout << "              - centralite de proximite"<< std::endl;
-            std::cout << "              - centralite d'intermediarite"<< std::endl;
             std::cout << std::endl;
             std::cout << "  4. test de vulnerabilite"<<std::endl;
             std::cout << "              - supprimer une ou plusieurs aretes"<< std::endl;
@@ -52,9 +52,12 @@ int main()
                 dessin.pondere(nom,1);
                 break;
             case 3 :
-                dessin.CritereProximite();
-                dessin.centraliteVecteurPropre();
                 dessin.centraliteDegre();
+                dessin.centraliteVecteurPropre();
+                dessin.CritereProximite();
+                //dessin.Critere_intermediarite(0);
+
+                dessin.affichage_centralite();
                 dessin.sauvegarde();
                 dessin.Connexite();
                 break;
