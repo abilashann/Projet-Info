@@ -20,6 +20,13 @@ class Graphe
         Graphe(std::string nomFichier);
         int Dijkstra(int i_debut, int i_fin);
         void afficher();
+<<<<<<< Updated upstream
+=======
+        void affichage_centralite();
+        void CreationAdj();
+        void pondere(std::string nomFichier,int choix);
+        void set_dejafait(int val);
+>>>>>>> Stashed changes
         void CritereProximite();
         void centraliteVecteurPropre();
         void centraliteDegre();

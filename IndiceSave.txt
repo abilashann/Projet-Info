@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 sommet : 0    Cd : 0    Cdn :  3381.31    Cvp : 0.223607    Cp :  2.12113e+088    Cpn : 1.51331e-013
 sommet : 1    Cd : 0    Cdn :  0    Cvp : 0.223607    Cp :  0    Cpn : 0
 sommet : 2    Cd : 0    Cdn :  0    Cvp : 0.894427    Cp :  0    Cpn : 0
@@ -14,4 +15,11 @@ sommet : 5    Cd : 2    Cdn :  0.25    Cvp : 0.226455    Cp :  0.119403    Cpn :
 sommet : 6    Cd : 3    Cdn :  0.375    Cvp : 0.339683    Cp :  0.190476    Cpn : 0.0238095
 sommet : 7    Cd : 3    Cdn :  0.375    Cvp : 0.339683    Cp :  0.153846    Cpn : 0.0192308
 sommet : 8    Cd : 3    Cdn :  0.375    Cvp : 0.339683    Cp :  0.129032    Cpn : 0.016129
+>>>>>>> Stashed changes
+=======
+0   1   0.25   0.447   0.223   0.142   0.571
+1   1   0.25   0.447   0.223   0.142   0.571
+2   4   1   1.788   0.894   0.25   1
+3   1   0.25   0.447   0.223   0.142   0.571
+4   1   0.25   0.447   0.223   0.142   0.571
 >>>>>>> Stashed changes

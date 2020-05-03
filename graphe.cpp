@@ -5,7 +5,20 @@
 #include <string>
 #include <vector>
 
+<<<<<<< Updated upstream
 Graphe::Graphe (std::string nomFichier )
+=======
+Graphe::Graphe (std::string nomFichier)
+{
+    std::cout << "Voulez ouvrir un fichier pondere? 1 pour oui 2 pour non" << std::endl;
+    while(m_choix!=1 && m_choix!=2)
+        std::cin >> m_choix;
+    pondere(nomFichier,m_choix);
+    CreationAdj();
+}
+
+void Graphe::pondere(std::string nomFichier,int choix)
+>>>>>>> Stashed changes
 {
     int ordre; /// sommet
     int taille; ///arete
@@ -77,6 +90,7 @@ void Graphe::afficher()
 {
     int ordre = m_sommet.size();
     int taille = m_arete.size();
+
     if (m_orientation== 0)
     {
         std::cout << "graphe non oriente" << std:: endl;
@@ -88,10 +102,6 @@ void Graphe::afficher()
 
     std:: cout << "ordre = " << ordre << std::endl;
 
-    /*for(int i=0; i<ordre; ++i)
-    {
-        m_arete[i]->affichage();
-    }*/
     for (const auto& s : m_sommet)
     {
         std::cout << "  " << *s << std::endl;
@@ -140,12 +150,20 @@ void Graphe::afficher()
 int Graphe::Dijkstra(int i_debut, int i_fin)
 {
     int longeur=0;
+    int distance, d_min, id_d_min;
+
     ///initialisation
     for (auto it : m_sommet)
         it->setMarquage(0);
 
+<<<<<<< Updated upstream
     int tab_distance[m_sommet.size()]; //recupère les plus court chemin de s0 à chaque sommet parcouru
     //std::vector <Sommet*> sommetsParcourus; //recupère la liste et l'odre dans lequel les sommets sont parcouru
+=======
+    ///recupÃ¨re les plus court chemin de s0 Ã  chaque sommet parcouru
+    ///std::vector <Sommet*> sommetsParcourus; //recupÃ¨re la liste et l'odre dans lequel les sommets sont parcouru
+    int tab_distance[m_sommet.size()];
+>>>>>>> Stashed changes
     int tab_predecesseurs[m_sommet.size()];
 
     for (size_t i=0; i<m_sommet.size(); ++i)
@@ -154,16 +172,12 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
     for (size_t i=0; i<m_sommet.size(); ++i)
         tab_predecesseurs[i]=99;
 
-
     Sommet*s=m_sommet[i_debut]; //s=s0
     tab_distance[i_debut]=0;
     m_sommet[i_debut]->setMarquage(1);//1 pour dire qu'on a trouver la plus petite distance
     //sommetsParcourus.push_back(m_sommets[i_debut]);
 
-    int distance, d_min, id_d_min;
-
     ///recherche
-
     do
     {
         d_min=999;
@@ -202,11 +216,7 @@ int Graphe::Dijkstra(int i_debut, int i_fin)
     }
     while (m_sommet[i_fin]->getMarquage()!=1);  //tant qu'on a pas trouver le plus court chemin jusqu'au sommet final
 
-
     ///affichage
-
-    std::cout<<std::endl;
-
     std::vector<Sommet*> sommetsParcourus; //liste de sommets en chemin
     sommetsParcourus.push_back(m_sommet[i_fin]);
     int pred;
@@ -260,13 +270,16 @@ void Graphe::Dijkstra_pour_toutes_les aretes(int i_debut,int i_fin)
 
 void Graphe::centraliteDegre()
 {
+    std::cout << "          -----  Calcul indice centralite degre  -----" << std::endl;
     ///initialisation
     float Cd=0;
     float Cdn=0;
     int ordre = m_sommet.size();
+    int j=0;
 
     for (size_t i =0 ; i<m_sommet.size(); ++i)
     {
+<<<<<<< Updated upstream
         //on récupère le degre [i] du sommet que l'on met dans la variable
         //on met cet valeur dans le Cd de la classe sommet
         Cd = m_sommet[i]->get_degre();
@@ -277,31 +290,55 @@ void Graphe::centraliteDegre()
         m_sommet[i]->set_Cdn(Cdn);
         std::cout<<"Cdn " << i << " : " << m_sommet[i]->get_Cdn() << std::endl;
         std::cout << std::endl;
+=======
+        std::cout <<"tour "<< j <<" : "<<std::endl;
+        //on rÃ©cupÃ¨re le degre [i] du sommet que l'on met dans la variable
+        //on met cet valeur dans le Cd de la classe sommet
+        Cd = m_sommet[i]->get_degre();
+        m_sommet[i]->set_Cd(Cd);
+        std::cout<< "Centralite degre " << i << " : " << m_sommet[i]->get_Cd() << std::endl;
+        //calcul de Cp normalisÃ©
+        Cdn=Cd/(ordre - 1);
+        m_sommet[i]->set_Cdn(Cdn);
+        std::cout<<"Centralite degre normalise " << i << " : " << m_sommet[i]->get_Cdn() << std::endl << std::endl;
+        m_afficheIndice=1; // Dire que l'indice vient d'etre calculÃ©
+        j+=1;
+>>>>>>> Stashed changes
     }
+    std::cout << std::endl << std::endl;
 }
 
 
 void Graphe::centraliteVecteurPropre()
 {
+    std::cout << "          -----  Calcul indice centralite vecteur propre  -----" << std::endl << std::endl;
     ///initialisation variable
     float lambda = 0.0;
     float lambda_prev = 0.0;
 
     float somme_indice=0;
     float NI = 0;
+    int i=0;
 
 
     ///initialisation
 
     for(size_t i = 0; i<m_sommet.size() ; i++)
     {
+<<<<<<< Updated upstream
         m_sommet[i]->set_Cvp(1);
         std::cout <<" indice n "<< i <<" : " << m_sommet[i]->get_Cvp() << std::endl;
+=======
+        m_sommet[i]->set_Cvpn(1);
+        ///std::cout <<" indice n "<< i <<" : " << m_sommet[i]->get_Cvpn() << std::endl;
+>>>>>>> Stashed changes
     }
 
     /// calcul
     do
     {
+        i+=1;
+        std::cout << "tour "<< i <<" : "  << std::endl;
         ///parcours des sommets
         for(size_t i = 0; i<m_sommet.size(); i++)
         {
@@ -309,13 +346,17 @@ void Graphe::centraliteVecteurPropre()
             somme_indice= 0;
 
             ///parcours des adj de m_sommet[i]
-
             for(auto it: m_sommet[i]->get_adj())
             {
+<<<<<<< Updated upstream
                 somme_adj+= it.first->get_Cvp();
 
                 ///std::cout << "TEST : " << it.first->get_Cvp() << std::endl;
                 m_sommet[i]->set_C(somme_adj);
+=======
+                somme_adj+= it.first->get_Cvpn();
+                m_sommet[i]->set_Cvp(somme_adj);
+>>>>>>> Stashed changes
             }
         }
         ///on recupère la somme des indices par sommet et Total
@@ -340,18 +381,35 @@ void Graphe::centraliteVecteurPropre()
             m_sommet[i]->set_Cvp(NI);
             std::cout << "calcule nouvel indice : " << m_sommet[i]->get_Cvp() << std::endl;
         }
+<<<<<<< Updated upstream
     }
     while(abs(lambda - lambda_prev) > 0.01); // condition pour que lambda soit stable
+=======
+
+    std::cout << std::endl;
+    }
+    while(abs(lambda - lambda_prev) > 0.01); // condition pour que lambda soit stable
+    std::cout << std::endl;
+>>>>>>> Stashed changes
 }
 
 void Graphe::CritereProximite()
 {
+<<<<<<< Updated upstream
     double Cp; // non Normalisé
     double Cpn; // normalisé
+=======
+    std::cout << "          -----  Calcul indice centralite proximite  -----" << std::endl << std::endl;
+    double Cp; // non NormalisÃ©
+    double Cpn; // normalisÃ©
+    int k=0;
+>>>>>>> Stashed changes
     float Somme=0;;
     int longeur=0;
     for (size_t i=0; i<m_sommet.size(); ++i)
     {
+        k+=1;
+        std::cout << "tour "<< k <<" : ";
         for (size_t y=0; y<m_sommet.size(); ++y)
         {
             if (i==y)
@@ -370,8 +428,13 @@ void Graphe::CritereProximite()
         std::cout << "Somme = :" << Somme<< std::endl;
         if(Somme!=0)
         {
+<<<<<<< Updated upstream
             Cp=((m_sommet.size()-1)/(Somme));
             Cpn=((1)/(Somme));
+=======
+            Cp=((1)/(Somme));
+            Cpn=((m_sommet.size()-1)/(Somme));
+>>>>>>> Stashed changes
             m_sommet[i]->set_Cp(Cp);
             m_sommet[i]->set_Cpn(Cpn);
             std::cout<< "Cp numero :"<< i << " = " << m_sommet[i]->get_Cp() << std::endl;
@@ -379,11 +442,13 @@ void Graphe::CritereProximite()
         }
         Somme=0;
     }
+    std::cout << std::endl << std::endl;
 }
 
 void Graphe::sauvegarde()
 {
     std::ofstream fichier("IndiceSave.txt");
+    std::cout << "Enregistrement des donnees . . . " <<std::endl;
     if (fichier)
     {
         for (size_t i=0; i<m_sommet.size(); ++i)
@@ -397,10 +462,60 @@ void Graphe::sauvegarde()
     {
         std::cout << "Impossible d'ecrire/ouvrir sur le fichier" <<std::endl;
     }
+    std::cout << "vous avez bien enregistrer les donnees dans le fichier" <<std::endl;
 
 }
 <<<<<<< Updated upstream
 =======
+
+void Graphe::affichage_centralite()
+{
+    std::cout << "------------------------------------------------  INDICE DE CENTRALITE  ------------------------------------------------"<<std::endl;
+
+
+    for (size_t i=0; i<m_sommet.size(); ++i)
+    {
+
+        int entier1 = (int)( m_sommet[i]->get_Cd() * 1000.0);
+        int entier2 = (int)( m_sommet[i]->get_Cdn() * 1000.0);
+        int entier3 = (int)( m_sommet[i]->get_Cvp() * 1000.0);
+        int entier4 = (int)( m_sommet[i]->get_Cvpn() * 1000.0);
+        int entier5 = (int)( m_sommet[i]->get_Cp() * 1000.0);
+        int entier6 = (int)( m_sommet[i]->get_Cpn() * 1000.0);
+
+        if(100.0 * m_sommet[i]->get_Cd() - (double)entier1 >= 0.5)
+            ++entier1;
+        if(100.0 * m_sommet[i]->get_Cdn() - (double)entier2 >= 0.5)
+            ++entier2;
+        if(100.0 * m_sommet[i]->get_Cvp() - (double)entier3 >= 0.5)
+            ++entier3;
+        if(100.0 * m_sommet[i]->get_Cvpn() - (double)entier4 >= 0.5)
+            ++entier4;
+        if(100.0 * m_sommet[i]->get_Cp() - (double)entier5 >= 0.5)
+            ++entier5;
+        if(100.0 * m_sommet[i]->get_Cpn() - (double)entier6 >= 0.5)
+            ++entier6;
+
+        m_sommet[i]->set_Cd((double)entier1 / 1000.0);
+        m_sommet[i]->set_Cdn((double)entier2 / 1000.0);
+        m_sommet[i]->set_Cvp((double)entier3 / 1000.0);
+        m_sommet[i]->set_Cvpn((double)entier4 / 1000.0);
+        m_sommet[i]->set_Cp((double)entier5 / 1000.0);
+        m_sommet[i]->set_Cpn((double)entier6 / 1000.0);
+
+
+        std::cout << "     ------------------------------------------------- SOMMET " << i << " ---------------------------------------------------     "<<std::endl;
+
+        std::cout <<"   centralite degre : "<< m_sommet[i]->get_Cd() << std::endl;
+        std::cout <<"   centralite degre normalise : "<< m_sommet[i]->get_Cdn() << std::endl << std::endl;
+        std::cout <<"   centralite vecteur propre : "<< m_sommet[i]->get_Cvp() << std::endl;
+        std::cout <<"   centralite vecteur propre normalise : "<< m_sommet[i]->get_Cvpn() << std::endl << std::endl;
+        std::cout <<"   centralite proximite : "<< m_sommet[i]->get_Cp() << std::endl;
+        std::cout <<"   centralite proximite normalise : "<< m_sommet[i]->get_Cpn()<< std::endl<< std::endl;
+
+    }
+std::cout << "------------------------------------------------------------------------------------------------------------------------"<<std::endl;
+}
 
 void Graphe::Suppressionarete()
 {
@@ -427,4 +542,93 @@ void Graphe::Suppressionarete()
 >>>>>>> Stashed changes
 
 
+<<<<<<< Updated upstream
 
+=======
+    ///affichage
+    /*for (auto it : compoConnexes)
+    {
+        std::cout<<std::endl<<"Composante connexe "<<it.first<<" : ";
+        for (auto et : it.second)
+            std::cout<<et<<" ";
+    }*/
+    //std::cout<<"Composante taille : "<< compoConnexes.size()<<std::endl;
+    if (compoConnexes.size()>1)
+    {
+        std::cout<<"Le graphe n'est pas connexe "<< std::endl;
+    }
+    else
+    {
+        std::cout<<"Le graphe est connexe "<< std::endl;
+    }
+}
+
+void Graphe :: lectureFichierCentralite(std::string nomFichier)
+{
+    std::cout << "----------------------------------------------------  VULNERABILTE  ----------------------------------------------------"<<std::endl;
+    std::cout << std::endl;
+    int identifiant;
+
+    float Cd_modif;
+    float Cdn_modif;
+    float Cvp_modif;
+    float Cvpn_modif;
+    float Cp_modif;
+    float Cpn_modif;
+
+    float diff_Cd;
+    float diff_Cdn;
+    float diff_Cvp;
+    float diff_Cvpn;
+    float diff_Cp;
+    float diff_Cpn;
+
+    std::ifstream fichier(nomFichier);
+    for (size_t i=0; i<m_sommet.size(); ++i)
+    {
+        fichier >> identifiant;
+        fichier >> Cd_modif;
+        fichier >> Cdn_modif;
+        fichier >> Cvp_modif;
+        fichier >> Cvpn_modif;
+        fichier >> Cp_modif;
+        fichier >> Cpn_modif;
+
+        std::cout << "     ------------------------------------------------- SOMMET " << i << " ---------------------------------------------------     "<<std::endl;
+        std::cout << std::endl;
+        std::cout <<"indice de centralite obtenus avant changement " << std::endl;
+        std::cout <<"identifiant : "<< i << std::endl;
+        std::cout <<" Centralite degre non normalise :  "<< m_sommet[i]->get_Cd() << " normalise :  "<< m_sommet[i]->get_Cdn()<< std::endl;
+        std::cout <<" Centralite vecteur propre non normalise :  "<< m_sommet[i]->get_Cvp() << " normalise :  "<< m_sommet[i]->get_Cvpn()<< std::endl;
+        std::cout <<" Centralite proximite non normalise :  "<< m_sommet[i]->get_Cp() << " normalise :  "<< m_sommet[i]->get_Cpn()<< std::endl;
+        std::cout <<std::endl;
+
+        std::cout <<std::endl;
+        std::cout <<"indice de centralite obtenus apres changement" <<  std::endl;
+        std::cout << "identifiant: " << identifiant << std::endl;
+        std::cout <<" Centralite degre non normalise :  "<< Cd_modif << " normalise :  "<< Cdn_modif<< std::endl;
+        std::cout <<" Centralite vecteur propre non normalise :  "<< Cvp_modif << " normalise :  "<< Cvpn_modif<< std::endl;
+        std::cout <<" Centralite proximite non normalise :  "<< Cp_modif << " normalise :  "<< Cpn_modif<< std::endl;
+
+        diff_Cd = abs(m_sommet[i]->get_Cd()- Cd_modif);
+        diff_Cdn = abs(m_sommet[i]->get_Cdn()- Cdn_modif);
+        diff_Cvp = abs(m_sommet[i]->get_Cvp()- Cvp_modif);
+        diff_Cvpn = abs(m_sommet[i]->get_Cvpn()- Cvpn_modif);
+        diff_Cp = abs(m_sommet[i]->get_Cp()- Cp_modif);
+        diff_Cpn = abs(m_sommet[i]->get_Cpn()- Cpn_modif);
+    }
+        std::cout << "------------------------------------------------------------------------------------------------------------------------"<<std::endl;
+
+    for (size_t i=0; i<m_sommet.size(); ++i)
+    {
+        std::cout << "     --------------------------------------------- DIFFERENCE INDICE " << i << " -----------------------------------------------     "<<std::endl;
+        std::cout <<"difference d'indice avant et apres changement " << std::endl;
+        std::cout <<"identifiant : "<< i << std::endl;
+        std::cout <<" difference centralite degre non normalise :  "<< diff_Cd  << " normalise : "<< diff_Cdn << std::endl;
+        std::cout <<" difference centralite vecteur propre non normalise:  "<<diff_Cvp  << " normalise : "<< diff_Cvpn << std::endl;
+        std::cout <<" difference centralite proximite non normalise :  "<<diff_Cp  << " normalise : "<< diff_Cpn << std::endl;
+        std::cout <<std::endl;
+    }
+    std::cout << "------------------------------------------------------------------------------------------------------------------------"<<std::endl;
+}
+>>>>>>> Stashed changes
