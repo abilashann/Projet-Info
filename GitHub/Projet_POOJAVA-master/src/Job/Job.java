@@ -1,7 +1,9 @@
 package Job;
 
 public class Job implements Comparable<Job> {
-
+    /**
+     * attribut
+     */
     private int id;
     private String title;
     private String description;
